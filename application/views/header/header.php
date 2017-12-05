@@ -45,9 +45,7 @@
         }
 
 
-        #modalArtic {
-            width:1100px;
-        }
+        .modal { width: 70% !important ; height: 80% !important ;}
 
         #tblArticulos,#tblTransacciones,#tblBodega,#tblLotes,#tblprecios,#tblbonificados,#tbl6Meses,#tbl12Meses{
             text-transform:uppercase;

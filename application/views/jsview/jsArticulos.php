@@ -85,7 +85,10 @@ $("#blfooterMaster").hide();
 
 
 function getTransac(elem,nombre) {
-     $("#modalArtic").openModal();
+     $("#modalArtic").openModal({
+         startingTop: '4%', // Starting top style attribute
+         endingTop: '10%'
+     });
       getBodega(elem);
 
       getPrecios(elem);
@@ -257,7 +260,7 @@ function format(callback,bodega,art) {
         dataType: "json",
         complete: function (response) {
             var data = JSON.parse(response.responseText);
-
+            var ia =0;
             var thead = '',  tbody = '';
             for (var key in data) {
                 thead += '<th class="negra center">LOTE</th>';
@@ -267,11 +270,13 @@ function format(callback,bodega,art) {
                 thead += '<th class="negra center">FECHA DE CREACION</th>';
                 thead += '<th class="negra center">FECHA VENCIMIENTO</th>';
             }
+
             $.each(data, function (i, d) {
 
                 $.each(d, function (a, b) {
                     ia++;
                 });
+
 
                 for (var x=0; x<ia; x++) {
 
@@ -282,12 +287,19 @@ function format(callback,bodega,art) {
                         '<td>' + d[x]["LOTE"] + '</td>'+
                         '<td class="negra">' + d[x]["CANT_DISPONIBLE"] + '</td>'+
                         '<td>' + d[x]["CANTIDAD_INGRESADA"] + '</td>'+
-                        '<td><span onclick="Ingresos_lotes('+ART+','+lt+')">' + d[x]["FECHA_INGRESO"] + '</span>*</td>'+
+                        //'<td><span onclick="Ingresos_lotes('+ART+','+lt+')">' + d[x]["FECHA_INGRESO"] + '</span>*</td>'+
+                        '<td>' + d[x]["FECHA_INGRESO"] + '</td>'+
                         '<td>' + d[x]["FECHA_ENTRADA"] + '</td>'+
                         '<td>' + d[x]["FECHA_VENCIMIENTO"] + '</td>'+
                         '</tr>';
                 }
             });
+
+            if (ia==0){
+                thead += '<th class="negra center"></th>';
+                tbody += '<tr class="center"><td>BODEGA SIN EXISTENCIA</td></tr>';
+            }
+            console.log('<tr><td>SIN DATOS</td></tr>');
             callback($('<table id="tbl_detalles_bodegas">' + thead + tbody + '</table>')).show();
         },
         error: function () {
