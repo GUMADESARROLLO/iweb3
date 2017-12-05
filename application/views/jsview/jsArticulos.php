@@ -99,7 +99,6 @@ function getTransac(elem,nombre) {
     $("#dropCount").empty();
 
     $('#tbl_trasn').DataTable( {
-        "ajax": "Transacciones"+"/"+elem,
         responsive: true,
         "autoWidth":false,
         "info": true,
@@ -125,31 +124,6 @@ function getTransac(elem,nombre) {
                 "next": "Siguiente",
                 "previous": "Anterior"
             }
-        },
-        "columns": [
-            { "data": "FECHA" },
-            { "data": "LOTE" },
-            { "data": "DESCRTIPO" },
-            { "data": "CANTIDAD" },
-            { "data": "REFERENCIA" }
-        ],
-        fnInitComplete: function () {
-            $('#tblTransacciones').on('init.dt', function () {
-                $("#load").hide();
-            }).DataTable();
-            this.api().columns([2]).every( function () {
-                var columns = this;
-                var select = $('<select><option value="">filtrar por Tipo</option></select>').appendTo( $("#dropTipo").empty() ).on( 'change', function () {
-                    var val = $.fn.DataTable.util.escapeRegex($(this).val());
-                    columns.search( val ? '^'+val+'$' : '', true, false ).draw();} );
-                columns.data().unique().sort().each( function ( d, j ) {
-                    if(columns.search() === '^'+d+'$'){
-                        select.append( '<option value="'+d+'" selected="selected">'+d+'</option>' )
-                    } else {
-                        select.append( '<option value="'+d+'">'+d+'</option>')
-                    }
-                } );
-            } );
         }
     } );
     $("#dropCount").append($("#tbl_trasn_length"));
@@ -161,6 +135,8 @@ $("#btnSearch").click(function() {
     var d1 = $("#dtn1").val();
     var d2 = $("#dtn2").val();
     var at = $("#modalIdArticulo").html();
+    var tp = $( "#sltTipo option:selected" ).text();
+    console.log(tp);
     $("#dropCount").empty();
     if (d1 =='' || d2==''){
         swal(
@@ -170,7 +146,7 @@ $("#btnSearch").click(function() {
         )
     }else{
         $('#tbl_trasn').DataTable( {
-            "ajax": "TransaccionesDetalles"+"/"+d1+"/"+d2+"/"+at,
+            "ajax": "TransaccionesDetalles"+"/"+d1+"/"+d2+"/"+at+"/"+tp,
             responsive: true,
             "autoWidth":false,
             "info": true,
@@ -203,25 +179,7 @@ $("#btnSearch").click(function() {
                 { "data": "DESCRTIPO" },
                 { "data": "CANTIDAD" },
                 { "data": "REFERENCIA" }
-            ],
-            fnInitComplete: function () {
-                $('#tblTransacciones').on('init.dt', function () {
-                    $("#load").hide();
-                }).DataTable();
-                this.api().columns([2]).every( function () {
-                    var columns = this;
-                    var select = $('<select><option value="">filtrar por Tipo</option></select>').appendTo( $("#dropTipo").empty() ).on( 'change', function () {
-                        var val = $.fn.DataTable.util.escapeRegex($(this).val());
-                        columns.search( val ? '^'+val+'$' : '', true, false ).draw();} );
-                    columns.data().unique().sort().each( function ( d, j ) {
-                        if(columns.search() === '^'+d+'$'){
-                            select.append( '<option value="'+d+'" selected="selected">'+d+'</option>' )
-                        } else {
-                            select.append( '<option value="'+d+'">'+d+'</option>')
-                        }
-                    } );
-                } );
-            }
+            ]
         } );
         $("#dropCount").append($("#tbl_trasn_length"));
     }

@@ -130,7 +130,18 @@
                             <i id="btnSearch" class="Medium material-icons">search</i>
                         </div>
                         <div class="input-field col s1">
-                            <div id="dropTipo"></div>
+                            <div id="dropTipo">
+                                <select class="browser-default" id="sltTipo">
+                                    <option value="Físico">Físico</option>
+                                    <option value="Costo">Costo</option>
+                                    <option value="Compra">Compra</option>
+                                    <option value="Aprobación">Aprobación</option>
+                                    <option value="Traspaso">Traspaso</option>
+                                    <option value="Venta">Venta</option>
+                                    <option value="Reservación">Reservación</option>
+                                    <option value="Consumo">Consumo</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="input-field col s1">
                             <div class="right" id="dropCount"></div>

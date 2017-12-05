@@ -32,8 +32,8 @@ class Main_model extends CI_Model
         echo json_encode($json);
         $this->sqlsrv->close();
     }
-    public function getTransaccionesDetalles($D1,$D2,$ID){
-        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_transacciones WHERE ARTICULO = '$ID'  AND FECHA  BETWEEN '$D1' AND '$D2'  ORDER BY ARTICULO ASC",SQLSRV_FETCH_ASSOC);
+    public function getTransaccionesDetalles($D1,$D2,$ID,$TP){
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_transacciones WHERE ARTICULO = '$ID' AND DESCRTIPO = '$TP' AND FECHA  BETWEEN '$D1' AND '$D2'  ORDER BY ARTICULO ASC",SQLSRV_FETCH_ASSOC);
         $i=0;
         $json = array();
         foreach($query as $fila){
