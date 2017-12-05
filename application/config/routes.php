@@ -16,6 +16,7 @@ $route['salir'] = 'login_controller/Salir';
 $route['Main'] = 'Main_controller/index';
 $route['Transacciones/(:any)'] = 'Main_controller/getTransacciones/$1';
 $route['TransaccionesDetalles/(:any)/(:any)/(:any)'] = 'Main_controller/getTransaccionesDetalles/$1/$2/$3';
+$route['Ingresos/(:any)/(:any)'] = 'Main_controller/getIngresos/$1/$2';
 $route['Bodegas/(:any)'] = 'Main_controller/getBodegas/$1';
 $route['Lotes/(:any)/(:any)'] = 'Main_controller/getLotes/$1/$2';
 $route['Precios/(:any)'] = 'Main_controller/getPrecios/$1';

@@ -118,7 +118,7 @@ function getTransac(elem,nombre) {
             "emptyTable": "NO HAY DATOS DISPONIBLES",
             "lengthMenu": '_MENU_ ',
             "search": '<i class=" material-icons">search</i>',
-            "loadingRecords": "Cargando...",
+            "loadingRecords": "",
             "paginate": {
                 "first": "Primera",
                 "last": "Última ",
@@ -242,6 +242,7 @@ function getBodega(elem) {
                 "defaultContent": ''
             },
             { "data": "BODEGA" },
+            { "data": "NOMBRE" },
             { "data": "CANT_DISPONIBLE" }
         ],
         "info": true,
@@ -302,8 +303,10 @@ function format(callback,bodega,art) {
             var thead = '',  tbody = '';
             for (var key in data) {
                 thead += '<th class="negra center">LOTE</th>';
-                thead += '<th class="negra center">CANTIDAD DISPONIBLE</th>';
-                thead += '<th class="negra center">FECHA ENTRADA</th>';
+                thead += '<th class="negra center">CANT. DISPONIBLE</th>';
+                thead += '<th class="negra center">CANT. INGRESADA POR COMPRA</th>';
+                thead += '<th class="negra center">FECHA ULTM. INGRESO COMPRA</th>';
+                thead += '<th class="negra center">FECHA DE CREACION</th>';
                 thead += '<th class="negra center">FECHA VENCIMIENTO</th>';
             }
             $.each(data, function (i, d) {
@@ -313,15 +316,21 @@ function format(callback,bodega,art) {
                 });
 
                 for (var x=0; x<ia; x++) {
+
+                    var ART = "'" + d[x]["ARTICULO"] + "'";
+                    var lt = "'" + d[x]["LOTE"] + "'";
+
                     tbody += '<tr class="center">' +
                         '<td>' + d[x]["LOTE"] + '</td>'+
                         '<td class="negra">' + d[x]["CANT_DISPONIBLE"] + '</td>'+
+                        '<td>' + d[x]["CANTIDAD_INGRESADA"] + '</td>'+
+                        '<td><span onclick="Ingresos_lotes('+ART+','+lt+')">' + d[x]["FECHA_INGRESO"] + '</span>*</td>'+
                         '<td>' + d[x]["FECHA_ENTRADA"] + '</td>'+
                         '<td>' + d[x]["FECHA_VENCIMIENTO"] + '</td>'+
                         '</tr>';
                 }
             });
-            callback($('<table>' + thead + tbody + '</table>')).show();
+            callback($('<table id="tbl_detalles_bodegas">' + thead + tbody + '</table>')).show();
         },
         error: function () {
             swal(
@@ -333,9 +342,50 @@ function format(callback,bodega,art) {
     });
 }
 
+function Ingresos_lotes(ARTICULO,LOTE) {
+    $("#mdlIngresos").openModal({
+            ready: function (modal,tigger) {
+                $("#tbl_ingresos_lote").dataTable({
+                    responsive: true,
+                    "autoWidth":false,
+                    "ajax": "Ingresos"+"/"+ARTICULO+"/"+LOTE,
+                    "destroy": true,
+                    "columns":[
+                        { "data": "FECHA_ENTRADA" },
+                        { "data": "CANTIDAD_INGRESADA" }
+                    ],
+                    "info": true,
+                    "pagingType": "full_numbers",
+                    "lengthMenu": [
+                        [5,10,100, -1],
+                        [5,10,100, "Todo"]
+                    ],
+                    "language": {
+                        "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                        "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                        "zeroRecords": "No se encontro coincidencia",
+                        "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                        "emptyTable": "NO HAY DATOS DISPONIBLES",
+                        "lengthMenu": '_MENU_ ',
+                        "search": '<i class=" material-icons">search</i>',
+                        "loadingRecords": "",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última ",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                });
+        }
+    });
+
+
+}
+
 function getPrecios(elem) {
     $("#Precio").html('');
-    $("#Precio").html('<table  id="tblprecios" class="table RobotoR striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
+    $("#Precio").html('<table  id="tblprecios" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
     var data,
         tableName = '#tblprecios',
         columns,
@@ -392,7 +442,7 @@ function getPrecios(elem) {
 
 function getBonificados(elem) {
     $("#bonificados").html('');
-    $("#bonificados").html('<table  id="tblbonificados" class="table RobotoR striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
+    $("#bonificados").html('<table  id="tblbonificados" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
     var data,
         tableName = '#tblbonificados',
         columns,

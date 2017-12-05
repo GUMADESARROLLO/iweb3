@@ -68,7 +68,22 @@
   </div>
 </div>
 </main>
+<!-- Modal Structure -->
+<div id="mdlIngresos" class="modal">
+    <div class="modal-content">
+        <div class="row TextColor center">INGRESOS</div>
+        <table class="table striped RobotoR center" id="tbl_ingresos_lote">
+            <thead>
+            <tr>
+                <th>FECHA</th>
+                <th>CANTIDAD</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
+    </div>
+</div>
  <!-- Modal ARTICULOS Structure -->
   <div id="modalArtic" class="modal">
     <div class="modal-content">
@@ -78,10 +93,10 @@
           <div class="row">
     <div class="col s12">
       <ul class="tabs">
-          <li class="tab col s3"><a id ="tlBdg" class="active" href="#bodega">Bodega</a></li>
-          <li class="tab col s3"><a href="#precio">Precios</a></li>
-          <li class="tab col s3"><a href="#bonificado">Bonificados</a></li>
-          <li class="tab col s3"><a id="tblTrans" href="#trans">Transacciones</a></li>
+          <li class="tab col s3"><a class="active RobotoR" id ="tlBdg"  href="#bodega">Bodega</a></li>
+          <li class="tab col s3"><a class="RobotoR" href="#precio">Precios</a></li>
+          <li class="tab col s3"><a class="RobotoR" href="#bonificado">Bonificados</a></li>
+          <li class="tab col s3"><a class="RobotoR" id="tblTrans" href="#trans">Transacciones</a></li>
       </ul>
     </div>
 <br>
@@ -126,7 +141,7 @@
         </div>
 
        <div id="trasn"></div>
-        <table id="tbl_trasn" class="display" cellspacing="0" width="100%">
+        <table id="tbl_trasn" class="display class="RobotoR"" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>FECHA</th>
@@ -144,11 +159,12 @@
 
 
     <div id="bodega" class="col s12">
-        <table id="tblBodega" class="display" cellspacing="0" width="100%">
+        <table id="tblBodega" class="display class="RobotoR"" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>DETALLE</th>
                 <th>BODEGA</th>
+                <th>NOMBRE</th>
                 <th>CANTIDAD DISPONIBLE</th>
             </tr>
             </thead>
@@ -157,7 +173,7 @@
     </div>
 
     <div id="precio" class="col s12">
-       <div id="Precio">
+       <div id="Precio" >
        </div>
     </div>
 

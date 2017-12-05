@@ -37,6 +37,7 @@
     left: 0;
 }
 
+
 .login-logo {
     margin-top: 40px;
     width: 172px !important;
@@ -757,6 +758,21 @@ table th {
     color: #fff;
     font-size: 14px;
     font-family: 'robotobold';
+}
+
+
+#tbl_detalles_bodegas th {
+    background: #263b40;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'robotobold';
+}
+#tbl_detalles_bodegas tr:nth-child(odd) {
+    background-color: #cacaca  !important;
+}
+#tbl_detalles_bodegas{
+    background: #cfd8dc ;
+
 }
 
 #ModalDetalles { width: 98% !important ; height: 24% !important ; }
@@ -1544,6 +1560,7 @@ label>select {
 #modalIdArticulo {
     font-weight: bold;
     text-transform: uppercase;
+    font-family: robotoregular;
 }
 
 table {
@@ -1590,3 +1607,4 @@ table thead tr th {
 select.swal2-select{
     display:none;
 }
+

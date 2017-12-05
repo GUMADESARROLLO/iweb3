@@ -58,7 +58,7 @@
            -moz-appearance: none;
         }
 
-        
+
 
         .tabs .indicator { background-color: #003040;}
 

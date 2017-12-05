@@ -30,6 +30,9 @@ class Main_controller extends CI_Controller
     public function getTransaccionesDetalles($D1,$D2,$ID){
         $this->Main_model->getTransaccionesDetalles($D1,$D2,$ID);
     }
+    public function getIngresos($ARTICULO,$LOTE){
+        $this->Main_model->getIngresos($ARTICULO,$LOTE);
+    }
 
     public function getBodegas($ID)
     {

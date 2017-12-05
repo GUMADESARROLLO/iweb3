@@ -57,12 +57,27 @@ class Main_model extends CI_Model
             $json["data"][$i]["id"] = $i;
             $json["data"][$i]["DETALLE"] = '<i class="material-icons">details</i>';
             $json["data"][$i]["BODEGA"] = $fila["BODEGA"];
+            $json["data"][$i]["NOMBRE"] = $fila["NOMBRE"];
             $json["data"][$i]["CANT_DISPONIBLE"] = number_format($fila["CANT_DISPONIBLE"],2);
             $i++;
         }
         echo json_encode($json);
         $this->sqlsrv->close();
         
+    }
+    public function getIngresos($ARTICULO,$LOTE)
+    {
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_ingreso_lote WHERE ARTICULO = '$ARTICULO' AND LOTE='$LOTE' ORDER BY FECHA_ENTRADA ASC", SQLSRV_FETCH_ASSOC);
+        $i = 0;
+        $json = array();
+        foreach ($query as $fila) {
+            $json["data"][$i]["FECHA_ENTRADA"] = date('d/m/Y',strtotime($fila["FECHA_ENTRADA"]));
+            $json["data"][$i]["CANTIDAD_INGRESADA"] = number_format($fila["CANTIDAD_INGRESADA"],2);
+            $i++;
+        }
+        echo json_encode($json);
+        $this->sqlsrv->close();
+
     }
 
     public function getLotes($Bodega,$Art)
@@ -71,25 +86,16 @@ class Main_model extends CI_Model
         $i = 0;
         $json = array();
         foreach ($query as $fila) {
+            $json["data"][$i]["ARTICULO"] = $fila["ARTICULO"];
             $json["data"][$i]["BODEGA"] = $fila["BODEGA"];
             $json["data"][$i]["CANT_DISPONIBLE"] = number_format($fila["CANT_DISPONIBLE"], 2);
             $json["data"][$i]["LOTE"] = $fila["LOTE"];
+            $json["data"][$i]["FECHA_INGRESO"] = date('d/m/Y',strtotime($fila["FECHA_ENTR"]));
+            $json["data"][$i]["CANTIDAD_INGRESADA"] = number_format($fila["CANTIDAD_INGRESADA"], 2);
             $json["data"][$i]["FECHA_ENTRADA"] = date('d/m/Y',strtotime($fila["FECHA_ENTRADA"]));
             $json["data"][$i]["FECHA_VENCIMIENTO"] = date('d/m/Y',strtotime($fila["FECHA_VENCIMIENTO"]));
             $i++;
         }
-
-       /* $json["columns"][0]["data"] = "BODEGA";
-        $json["columns"][0]["name"] = "BODEGA";
-        $json["columns"][1]["data"] = "CANT_DISPONIBLE";
-        $json["columns"][1]["name"] = "CANTIDAD DISPONIBLE";
-        $json["columns"][2]["data"] = "LOTE";
-        $json["columns"][2]["name"] = "LOTE";
-        $json["columns"][3]["data"] = "FECHA_ENTRADA";
-        $json["columns"][3]["name"] = "FECHA ENTRADA";
-        $json["columns"][4]["data"] = "FECHA_VENCIMIENTO";
-        $json["columns"][4]["name"] = "FECHA VENCIMIENTO";*/
-
         echo json_encode($json);
         $this->sqlsrv->close();
     }
