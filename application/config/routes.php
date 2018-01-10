@@ -21,6 +21,8 @@ $route['Bodegas/(:any)'] = 'Main_controller/getBodegas/$1';
 $route['Lotes/(:any)/(:any)'] = 'Main_controller/getLotes/$1/$2';
 $route['Precios/(:any)'] = 'Main_controller/getPrecios/$1';
 $route['Bonificados/(:any)'] = 'Main_controller/getBonificados/$1';
+$route['InvBodega'] = 'Invbodega_controller/index';
+$route['getInvBodegas/(:any)'] = 'Invbodega_controller/getInvBodegas/$1';
 
 //RESEVA
 $route['Reserva'] = 'Reserva_controller/index';

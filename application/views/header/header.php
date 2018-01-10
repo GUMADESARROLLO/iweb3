@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/media/css/jquery.dataTables.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/bootstrap.css">
-
-    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/chosen.css">
+    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/select2.min.css">
+    <!--<link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/chosen.css">-->
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/dataTables.tableTools.css">
 
     <style>

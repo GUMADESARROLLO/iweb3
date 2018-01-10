@@ -54,8 +54,26 @@ class Main_model extends CI_Model
         $i = 0;
         $json = array();
         foreach ($query as $fila) {
+
+            $id = "dv-".$fila["BODEGA"];
+            $ld = "i-".$fila["BODEGA"];
+
             $json["data"][$i]["id"] = $i;
-            $json["data"][$i]["DETALLE"] = '<i class="material-icons">details</i>';
+            $json["data"][$i]["DETALLE"] = '
+                        <i id="'.$ld.'" class="material-icons">details</i>
+                        <div id="'.$id.'"  style="display: none" class="preloader-wrapper small active" >
+                            <div class="spinner-layer spinner-yellow-only">
+                                <div style="overflow: visible!important;" class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div style="overflow: visible!important;" class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>';
             $json["data"][$i]["BODEGA"] = $fila["BODEGA"];
             $json["data"][$i]["NOMBRE"] = $fila["NOMBRE"];
             $json["data"][$i]["CANT_DISPONIBLE"] = number_format($fila["CANT_DISPONIBLE"],2);

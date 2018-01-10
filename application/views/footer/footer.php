@@ -28,8 +28,10 @@
 
 <script src="<?PHP echo base_url(); ?>assets/js/sweetalert2.min.js"></script>
 
-<script src="<?PHP echo base_url();?>assets/js/bootstrap.js"></script> 
-<script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/bootstrap.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/select2.min.js"></script>
+<!--<script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>-->
+
 <script>
 
     $('.datepicker1').pickadate({

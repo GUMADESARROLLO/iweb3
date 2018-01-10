@@ -1,26 +1,14 @@
 <script>
 $(document).ready(function(){
-    $( ".dataTables_info" ).addClass( ".dataTables_info RobotoR" );
     $("#searchCatalogo").on('keyup',function(){
         var table = $('#tblArticulos').DataTable();
         table.search(this.value).draw();
     });
-
-    $("#searchTransac").on('keyup',function(){
-        var table = $("#tblTransacciones").DataTable();  
-        table.search(this.value).draw();
+    $( "#frm_lab_row").change(function() {
+        var table = $('#tblArticulos').DataTable();
+        table.page.len(this.value).draw();
     });
-
-      $("#searchBodega").on('keyup',function(){
-        var table = $("#tblBodega").DataTable();  
-        table.search(this.value).draw();
-    });
-    
-      $("#searchLotes").on('keyup',function(){
-        var table = $("#tblLotes").DataTable();  
-        table.search(this.value).draw();
-    });
-
+    $('.select2').select2();
 });
 
 
@@ -32,7 +20,7 @@ $(document).ready(function(){
         "sort":true,
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
-            "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
+            "sSwfPath": "<?php echo base_url("assets/data/swf/copy_csv_xls_pdf.swf"); ?>"
         },
         "pagingType": "full_numbers",
         "lengthMenu": [
@@ -61,95 +49,43 @@ $(document).ready(function(){
         initComplete: function () {
             this.api().columns([3]).every( function () {
                 var column = this;
-                var select = $('<select><option value="">LABORATORIOS...</option></select>')
-                    .appendTo( $("#lstProveedores").empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
+                var select = $('#frm_lab_menu').on( 'change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                    column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                } );
 
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
+                $("#searchCatalogo").attr("placeholder", "Buscar entre "+this.data().count()+" articulos");
+
+
             } );
         }
     } );
 
-$("#blfooterMaster").hide();
+    $("#tblArticulos_length" ).hide();
 
+    $("#blfooterMaster").hide();
 
+    function getTransac(elem,nombre) {
+         $("#modalArtic").openModal({
+             startingTop: '4%', // Starting top style attribute
+             endingTop: '10%'
+         });
+        getBodega(elem);
 
-function getTransac(elem,nombre) {
-     $("#modalArtic").openModal({
-         startingTop: '4%', // Starting top style attribute
-         endingTop: '10%'
-     });
-      getBodega(elem);
+        getPrecios(elem);
+        getBonificados(elem);
+        $("#tlBdg").trigger("click");
+        $("#dropCount").append("");
+        var id = $(elem).attr('id');
+        $("#modalEncabezado").html(nombre);
+        $("#modalIdArticulo").html(elem);
+        $("#dropCount").empty();
 
-      getPrecios(elem);
-      getBonificados(elem);
-    //$("#tblTrans").trigger("click");
-    $("#tlBdg").trigger("click");
-    $("#dropCount").append("");
-    var id = $(elem).attr('id');
-    $("#modalEncabezado").html(nombre);
-    $("#modalIdArticulo").html(elem);
-    $("#dropCount").empty();
-
-    $('#tbl_trasn').DataTable( {
-        responsive: true,
-        "autoWidth":false,
-        "info": true,
-        "sort":true,
-        "destroy": true,
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [5,10,100, -1],
-            [5,10,100, "Todo"]
-        ],
-        "language": {
-            "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-            "infoEmpty": "Registro 0 a 0 de 0 entradas",
-            "zeroRecords": "No se encontro coincidencia",
-            "infoFiltered": "(filtrado de _MAX_ registros en total)",
-            "emptyTable": "NO HAY DATOS DISPONIBLES",
-            "lengthMenu": '_MENU_ ',
-            "search": '<i class=" material-icons">search</i>',
-            "loadingRecords": "",
-            "paginate": {
-                "first": "Primera",
-                "last": "Última ",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-    } );
-    $("#dropCount").append($("#tbl_trasn_length"));
-
-}
-
-$("#btnSearch").click(function() {
-
-    var d1 = $("#dtn1").val();
-    var d2 = $("#dtn2").val();
-    var at = $("#modalIdArticulo").html();
-    var tp = $( "#sltTipo option:selected" ).text();
-    console.log(tp);
-    $("#dropCount").empty();
-    if (d1 =='' || d2==''){
-        swal(
-            'Oops...',
-            "Algo salio mal",
-            'error'
-        )
-    }else{
         $('#tbl_trasn').DataTable( {
-            "ajax": "TransaccionesDetalles"+"/"+d1+"/"+d2+"/"+at+"/"+tp,
             responsive: true,
             "autoWidth":false,
             "info": true,
@@ -175,93 +111,141 @@ $("#btnSearch").click(function() {
                     "next": "Siguiente",
                     "previous": "Anterior"
                 }
-            },
-            "columns": [
-                { "data": "FECHA" },
-                { "data": "LOTE" },
-                { "data": "DESCRTIPO" },
-                { "data": "CANTIDAD" },
-                { "data": "REFERENCIA" }
-            ]
+            }
         } );
         $("#dropCount").append($("#tbl_trasn_length"));
-    }
-});
-
-
-function getBodega(elem) {
-    $("#tblBodega").dataTable({
-        responsive: true,
-        "autoWidth":false,
-        "ajax": "Bodegas"+"/"+elem,
-        "destroy": true,
-        "columns":[
-            {
-                "className":      'detalles-Lotes',
-                "orderable":      false,
-                "data":           "DETALLE",
-                "defaultContent": ''
-            },
-            { "data": "BODEGA" },
-            { "data": "NOMBRE" },
-            { "data": "CANT_DISPONIBLE" }
-        ],
-        "info": true,
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [5,10,100, -1],
-            [5,10,100, "Todo"]
-        ],
-        "language": {
-            "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-            "infoEmpty": "Registro 0 a 0 de 0 entradas",
-            "zeroRecords": "No se encontro coincidencia",
-            "infoFiltered": "(filtrado de _MAX_ registros en total)",
-            "emptyTable": "NO HAY DATOS DISPONIBLES",
-            "lengthMenu": '_MENU_ ',
-            "search": '<i class=" material-icons">search</i>',
-            "loadingRecords": "",
-            "paginate": {
-                "first": "Primera",
-                "last": "Última ",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-    });
 }
 
+    $("#btnSearch").click(function() {
 
+        var d1 = $("#dtn1").val();
+        var d2 = $("#dtn2").val();
+        var at = $("#modalIdArticulo").html();
+        var tp = $( "#sltTipo option:selected" ).text();
 
-$('#tblBodega').on('click', 'td.detalles-Lotes', function () {
-    var table = $('#tblBodega').DataTable();
-    var tr = $(this).closest('tr');
-    var row = table.row(tr);
-    var attx = $("#modalIdArticulo").html();
+        $("#dropCount").empty();
+        if (d1 =='' || d2==''){
+            swal(
+                'Oops...',
+                "Algo salio mal",
+                'error'
+            )
+        }else{
+            $('#tbl_trasn').DataTable( {
+                "ajax": "TransaccionesDetalles"+"/"+d1+"/"+d2+"/"+at+"/"+tp,
+                responsive: true,
+                "autoWidth":false,
+                "info": true,
+                "sort":true,
+                "destroy": true,
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [5,10,100, -1],
+                    [5,10,100, "Todo"]
+                ],
+                "language": {
+                    "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                    "zeroRecords": "No se encontro coincidencia",
+                    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                    "emptyTable": "NO HAY DATOS DISPONIBLES",
+                    "lengthMenu": '_MENU_ ',
+                    "search": '<i class=" material-icons">search</i>',
+                    "loadingRecords": "",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última ",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                "columns": [
+                    { "data": "FECHA" },
+                    { "data": "LOTE" },
+                    { "data": "DESCRTIPO" },
+                    { "data": "CANTIDAD" },
+                    { "data": "REFERENCIA" }
+                ]
+            } );
+            $("#dropCount").append($("#tbl_trasn_length"));
+        }
+    });
 
-
-    var data = table.row( $(this).parents('tr') ).data();
-    if ( row.child.isShown() ) {
-        row.child.hide();
-        tr.removeClass('shown');
-        console.log("close");
+    function getBodega(elem) {
+        $("#tblBodega").dataTable({
+            responsive: true,
+            "autoWidth":false,
+            "ajax": "Bodegas"+"/"+elem,
+            "destroy": true,
+            "paging":   false,
+            "columns":[
+                {
+                    "className":      'detalles-Lotes',
+                    "orderable":      false,
+                    "data":           "DETALLE",
+                    "defaultContent": ''
+                },
+                { "data": "BODEGA" },
+                { "data": "NOMBRE" },
+                { "data": "CANT_DISPONIBLE" }
+            ],
+            "info": false,
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [5,10,100, -1],
+                [5,10,100, "Todo"]
+            ],
+            "language": {
+                "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                "zeroRecords": "No se encontro coincidencia",
+                "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                "lengthMenu": '_MENU_ ',
+                "search": '<i class=" material-icons">search</i>',
+                "loadingRecords": "",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última ",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
     }
-    else {
-        format(row.child,data.BODEGA,attx);
-        tr.addClass('shown');
-    }
+
+    $('#tblBodega').on('click', 'td.detalles-Lotes', function () {
+        var table = $('#tblBodega').DataTable();
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        var attx = $("#modalIdArticulo").html();
+
+        var data = table.row( $(this).parents('tr') ).data();
+
+        if ( row.child.isShown() ) {
+            $("#dv-"+data.BODEGA).hide();
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            $("#dv-"+data.BODEGA).show();
+            format(row.child,data.BODEGA,attx);
+            tr.addClass('shown');
+        }
 
 });
 
-function format(callback,bodega,art) {
-    var ia=0;
-    $.ajax({
-        url:'Lotes/'+bodega+"/"+art,
-        dataType: "json",
+    function format(callback,bodega,art) {
+        $.ajax({
+            url:'Lotes/'+bodega+"/"+art,
+            dataType: "json",
         complete: function (response) {
             var data = JSON.parse(response.responseText);
             var ia =0;
             var thead = '',  tbody = '';
+
+            $("#dv-"+bodega).hide();
+
             for (var key in data) {
                 thead += '<th class="negra center">LOTE</th>';
                 thead += '<th class="negra center">CANT. DISPONIBLE</th>';
@@ -287,7 +271,6 @@ function format(callback,bodega,art) {
                         '<td>' + d[x]["LOTE"] + '</td>'+
                         '<td class="negra">' + d[x]["CANT_DISPONIBLE"] + '</td>'+
                         '<td>' + d[x]["CANTIDAD_INGRESADA"] + '</td>'+
-                        //'<td><span onclick="Ingresos_lotes('+ART+','+lt+')">' + d[x]["FECHA_INGRESO"] + '</span>*</td>'+
                         '<td>' + d[x]["FECHA_INGRESO"] + '</td>'+
                         '<td>' + d[x]["FECHA_ENTRADA"] + '</td>'+
                         '<td>' + d[x]["FECHA_VENCIMIENTO"] + '</td>'+
@@ -299,7 +282,6 @@ function format(callback,bodega,art) {
                 thead += '<th class="negra center"></th>';
                 tbody += '<tr class="center"><td>BODEGA SIN EXISTENCIA</td></tr>';
             }
-            console.log('<tr><td>SIN DATOS</td></tr>');
             callback($('<table id="tbl_detalles_bodegas">' + thead + tbody + '</table>')).show();
         },
         error: function () {
@@ -312,51 +294,49 @@ function format(callback,bodega,art) {
     });
 }
 
-function Ingresos_lotes(ARTICULO,LOTE) {
-    $("#mdlIngresos").openModal({
-            ready: function (modal,tigger) {
-                $("#tbl_ingresos_lote").dataTable({
-                    responsive: true,
-                    "autoWidth":false,
-                    "ajax": "Ingresos"+"/"+ARTICULO+"/"+LOTE,
-                    "destroy": true,
-                    "columns":[
-                        { "data": "FECHA_ENTRADA" },
-                        { "data": "CANTIDAD_INGRESADA" }
-                    ],
-                    "info": true,
-                    "pagingType": "full_numbers",
-                    "lengthMenu": [
-                        [5,10,100, -1],
-                        [5,10,100, "Todo"]
-                    ],
-                    "language": {
-                        "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-                        "infoEmpty": "Registro 0 a 0 de 0 entradas",
-                        "zeroRecords": "No se encontro coincidencia",
-                        "infoFiltered": "(filtrado de _MAX_ registros en total)",
-                        "emptyTable": "NO HAY DATOS DISPONIBLES",
-                        "lengthMenu": '_MENU_ ',
-                        "search": '<i class=" material-icons">search</i>',
-                        "loadingRecords": "",
-                        "paginate": {
-                            "first": "Primera",
-                            "last": "Última ",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
+    function Ingresos_lotes(ARTICULO,LOTE) {
+        $("#mdlIngresos").openModal({
+                ready: function (modal,tigger) {
+                    $("#tbl_ingresos_lote").dataTable({
+                        responsive: true,
+                        "autoWidth":false,
+                        "ajax": "Ingresos"+"/"+ARTICULO+"/"+LOTE,
+                        "destroy": true,
+                        "columns":[
+                            { "data": "FECHA_ENTRADA" },
+                            { "data": "CANTIDAD_INGRESADA" }
+                        ],
+                        "info": true,
+                        "pagingType": "full_numbers",
+                        "lengthMenu": [
+                            [5,10,100, -1],
+                            [5,10,100, "Todo"]
+                        ],
+                        "language": {
+                            "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                            "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                            "zeroRecords": "No se encontro coincidencia",
+                            "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                            "emptyTable": "NO HAY DATOS DISPONIBLES",
+                            "lengthMenu": '_MENU_ ',
+                            "search": '<i class=" material-icons">search</i>',
+                            "loadingRecords": "",
+                            "paginate": {
+                                "first": "Primera",
+                                "last": "Última ",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
                         }
-                    }
-                });
-        }
-    });
+                    });
+            }
+        });
+    }
 
-
-}
-
-function getPrecios(elem) {
-    $("#Precio").html('');
-    $("#Precio").html('<table  id="tblprecios" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
-    var data,
+    function getPrecios(elem) {
+        $("#Precio").html('');
+        $("#Precio").html('<table  id="tblprecios" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
+        var data,
         tableName = '#tblprecios',
         columns,
         str,
@@ -377,6 +357,7 @@ function getPrecios(elem) {
                 "columns": data.columns,
                 "info": true,
                 "sort":true,
+                "paging":   false,
                 "order": [
                     [1, "asc"]
                 ],
@@ -408,12 +389,12 @@ function getPrecios(elem) {
                 }
             });
         });
-}
+    }
 
-function getBonificados(elem) {
-    $("#bonificados").html('');
-    $("#bonificados").html('<table  id="tblbonificados" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
-    var data,
+    function getBonificados(elem) {
+        $("#bonificados").html('');
+        $("#bonificados").html('<table  id="tblbonificados" class="table striped compact" cellspacing="0"><thead><tr></tr></thead></table>');
+        var data,
         tableName = '#tblbonificados',
         columns,
         str,
@@ -465,5 +446,5 @@ function getBonificados(elem) {
                 }
             });
         });
-}
+    }
 </script>

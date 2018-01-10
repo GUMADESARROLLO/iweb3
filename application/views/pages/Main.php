@@ -3,18 +3,33 @@
 </header>
 
 <main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-grid demo-content">       
-        <div class="row TextColor center">LISTA DE ARTICULOS</div>
-        <div class="row" style="width:100%">
-          <div class="container">
-            <div class="Buscar row column">               
-              <div class="col s1 m1 l1 offset-l3 offset-m2"><i onclick="ekisde()" class="material-icons ColorS">search</i></div>
-                <div class="input-field col s11 m6 l5">
-                    <input  id="searchCatalogo" type="text" placeholder="Buscar" class="validate mayuscula">
-                    <label for="search"></label>
+    <div class="mdl-grid demo-content">
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card hoverable horizontal">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col s10 m8">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="searchCatalogo">
+                        </div>
+                        <div class="col s1 m2" style="margin-top: 10px">
+                            <select class="browser-default select2" id="frm_lab_menu">
+                                <option value="">Todos laboratorios...</option>
+                            </select>
+                        </div>
+                        <div class="col s1 m2" style="margin-top: 10px">
+                            <select class="browser-default" id="frm_lab_row">
+                                <option value="10">10</option>
+                                <option value="100">100</option>
+                                <option value="-1">Todas las filas...</option>
+                            </select>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-          </div>
+        </div>
+        <div class="row" style="width:100%">
             <div STYLE="margin-right: 10px;" class="right m12" id="lstProveedores"></div>
         <div class="row center">
             <table class="table striped RobotoR" id="tblArticulos">
@@ -152,7 +167,7 @@
         </div>
 
        <div id="trasn"></div>
-        <table id="tbl_trasn" class="display class="RobotoR"" cellspacing="0" width="100%">
+        <table id="tbl_trasn" class="display RobotoR" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>FECHA</th>
@@ -169,8 +184,8 @@
     </div>
 
 
-    <div id="bodega" class="col s12">
-        <table id="tblBodega" class="display class="RobotoR"" cellspacing="0" width="100%">
+    <div id="bodega" class="col s12" style="margin-top: 20px;">
+        <table id="tblBodega" class="display RobotoR"  cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>DETALLE</th>
@@ -184,12 +199,12 @@
     </div>
 
     <div id="precio" class="col s12">
-       <div id="Precio" >
+       <div id="Precio" style="margin-top: 20px;">
        </div>
     </div>
 
     <div id="bonificado" class="col s12">
-         <div id="bonificados">
+         <div id="bonificados" style="margin-top: 20px;">
         </div>               
     </div>
   </div>

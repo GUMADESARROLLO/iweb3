@@ -1,8 +1,13 @@
 <script>
-$(document).ready(function(){
+$(document).ready(function()
+{
     $("#searchCatalogo").on('keyup',function(){
         var table = $('#tblArticulos').DataTable();
         table.search(this.value).draw();
+    });
+    $( "#frm_lab_row").change(function() {
+        var table = $('#tblArticulos').DataTable();
+        table.page.len(this.value).draw();
     });
 
 });
@@ -38,22 +43,18 @@ $("#tblArticulos").DataTable( {
     initComplete: function () {
         this.api().columns([15]).every( function () {
             var column = this;
-            var select = $('<select><option value="">ESTADOS...</option></select>')
-                .appendTo( $("#lstEstados").empty() )
-                .on( 'change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex(
-                        $(this).val()
-                    );
-
-                    column
-                        .search( val ? '^'+val+'$' : '', true, false )
-                        .draw();
-                } );
+            var select = $('#frm_lab_menu').on( 'change', function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search( val ? '^'+val+'$' : '', true, false ).draw();
+            } );
 
             column.data().unique().sort().each( function ( d, j ) {
                 select.append( '<option value="'+d+'">'+d+'</option>' )
             } );
+            $("#searchCatalogo").attr("placeholder", "Buscar entre "+this.data().count()+" articulos");
         } );
     }
 } );
+$( "#tblArticulos_length" ).hide();
+$("#blfooterMaster").hide();
 </script>
