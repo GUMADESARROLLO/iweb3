@@ -25,7 +25,7 @@
                             </select>
                         </div>
                         <div class="col s1 m1 center" style="margin-top: 10px">
-                            <a class="modal-trigger"  href="#ModalDetalles"><i class="material-icons">info</i></a>
+                            <a id="mdlDetalles"  href="#"><i class="material-icons">info</i></a>
                         </div>
 
                     </div>
@@ -160,9 +160,6 @@
         </tr>
         </tbody>
     </table>
-</div>
-<div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
 </div>
 </div>
  <!-- Modal ARTICULOS Structure -->

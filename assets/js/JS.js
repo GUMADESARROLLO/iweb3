@@ -7,6 +7,7 @@ $(document).ready(function() {
             $(this).addClass("urlActual");
          })
     });
+    $('.modal-trigger').leanModal();// INICIAR LOS MODALES
 } );//Fin Document ready
 
 

@@ -11,6 +11,9 @@ $(document).ready(function()
     });
 
 });
+$("#mdlDetalles").on("click",function () {
+    $("#ModalDetalles").openModal();
+});
 $("#tblArticulos").DataTable( {
     responsive:true,
     "autoWidth":false,

@@ -14,7 +14,7 @@
                         </div>
                         <div class="col s1 m2" style="margin-top: 10px">
                             <select class="browser-default select2" id="frm_lab_menu">
-                                <option value="">Todos laboratorios...</option>
+                                <option value="">LABORATORIOS...</option>
                             </select>
                         </div>
                         <div class="col s1 m2" style="margin-top: 10px">
