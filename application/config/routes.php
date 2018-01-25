@@ -38,6 +38,6 @@ $route["EliminaUsuarios/(:any)"] = "Usuarios_controller/eliminaUser/$1";
 $route["ActualizaUsuarios"] = "Usuarios_controller/actualizarPass";
 
 
-
-
-
+//PUNTOS
+$route['PUNTOS'] = 'Puntos_controller/index';
+$route['ALLPOINT'] = 'Puntos_controller/getAllPoint';

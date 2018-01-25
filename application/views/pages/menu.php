@@ -25,14 +25,14 @@
            <ul class="nav menu demo-navigation mdl-navigation__link RobotoR " >
 
             <?php
-
+            // <a href="PUNTOS"> <li href="PUNTOS"><i class="material-icons">assignment</i> PUNTOS</li></a>
               switch ($this->session->userdata('RolUser')) {
                 case 0:
                   $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inventario</li></a>
                            <a href="6Meses"> <li href="6Meses"><i class="material-icons">attach_money</i> liquidacion a 6 meses</li></a>
                            <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>  
                            <a href="Reserva"> <li href="Reserva"><i class="material-icons">lock</i> Reserva</li></a>
-                           <a href="InvBodega"> <li href="InvBodega"><i class="material-icons">assignment</i> INV. POR BODEGA</li></a>
+                           <a href="InvBodega"> <li href="InvBodega"><i class="material-icons">assignment</i> INV. POR BODEGA</li></a>                           
                            <a href="Usuarios"> <li href="Usuarios"><i class="material-icons">account_box</i> usuarios</li></a>
                            <a href="#" onclick="modalPass()"> <li href="#"><i class="material-icons">lock</i> Cambiar Contraseña</li></a>
                            <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</a></li>\';
@@ -41,7 +41,9 @@
                   case 7:
                       $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inventario</li></a>
                            <a href="6Meses"> <li href="6Meses"><i class="material-icons">attach_money</i> liquidacion a 6 meses</li></a>
-                           <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>                                                      
+                           <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>
+                           <a href="Reserva"> <li href="Reserva"><i class="material-icons">lock</i> Reserva</li></a>
+                           <a href="InvBodega"> <li href="InvBodega"><i class="material-icons">assignment</i> INV. POR BODEGA</li></a>
                            <a href="#" onclick="modalPass()"> <li href="#"><i class="material-icons">lock</i> Cambiar Contraseña</li></a>
                            <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</a></li>\';
                            <a href="#" > <li href="#" id="Salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
@@ -49,7 +51,9 @@
                   case 1:
                       $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inventario</li></a>
                            <a href="6Meses"> <li href="6Meses"><i class="material-icons">attach_money</i> liquidacion a 6 meses</li></a>
-                           <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>                           
+                           <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>
+                           <a href="Reserva"> <li href="Reserva"><i class="material-icons">lock</i> Reserva</li></a>
+                           <a href="InvBodega"> <li href="InvBodega"><i class="material-icons">assignment</i> INV. POR BODEGA</li></a>
                            <a href="Usuarios"> <li href="Usuarios"><i class="material-icons">account_box</i> usuarios</li></a>
                            <a href="#" onclick="modalPass()"> <li href="#"><i class="material-icons">lock</i> Cambiar Contraseña</li></a>
                            <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</a></li>\';
