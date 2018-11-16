@@ -10,12 +10,53 @@ class Puntos_model extends CI_Model
 
     public function listarArticulos()
     {
-        //$query = $this->sqlsrv->fetchArray("SELECT * FROM vtVS2_Clientes",SQLSRV_FETCH_ASSOC);
-        $query = $this->db->get('vstPuntos');
+       
+        /*$query = $this->db->get('vstPuntos');
         if ($query->num_rows()>0) {
             return $query->result_array();
-        }
-        //$this->sqlsrv->close();
+        }*/
+        
+       /* $array = array(
+            0 => Array
+        (
+            'uid' => '100',
+            'name' => 'Sandra Shush',
+            'url' => 'urlof100'
+        ), 
+        1 => Array
+        (
+            'uid' => '5465',
+            'name' => 'Stefanie Mcmohn',
+            'pic_square' => 'urlof100'
+        ), 
+        2 => Array
+        (
+            'uid' => '40489',
+            'name' => 'Michael',
+            'pic_square' => 'urlof40489'
+        ));
+
+        
+   
+       $QSearch = $this->sqlsrv->fetchArray("SELECT * FROM iweb_puntos WHERE FACTURA='00066254'",SQLSRV_FETCH_ASSOC);
+        $this->sqlsrv->close();
+        $json = array();
+        $i=0;
+        $query = $this->db->get('visys.rfactura');
+        foreach($query->result_array() as $fila){
+            $key = array_search($fila["Factura"], array_column($QSearch, 'FACTURA'));            
+            $json["data"][$i]["Factura"] = $fila["Factura"];
+            //$json["data"][$i]["LOTE"] = number_format($query[$key]['TT_PUNTOS'],0) - number_format($fila["Puntos"],0);
+            $i++;
+        }*/
+
+      //  echo json_encode($json);
+
+          $query = $this->db->get('vstpuntos');
+        $query = $this->db->query("SELECT * FROM vstpuntos ");
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }        
     }
 
     public function getTransaccines($ID){
@@ -36,28 +77,23 @@ class Puntos_model extends CI_Model
     public function getAllPoint()
     {
         $i=0;
-        $json = array();
         $data = array();
-        //$this->db->truncate('mpoint');
-        $query = $this->sqlsrv->fetchArray("SELECT TOP 200 * FROM iweb_puntos",SQLSRV_FETCH_ASSOC);
+        $this->db->truncate('mpoint');
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_puntos ",SQLSRV_FETCH_ASSOC);
         foreach($query as $key){
-            //$Remanente = number_format($this->FacturaSaldo($key['FACTURA'],$key['TOTAL']),2,'.','');
-            $Remanente = $key['TOTAL'];
+            $Remanente = $this->FacturaSaldo($key['FACTURA'],$key['TOTAL']);
            $name = $this->sanear_string ($key['NOMBRE_CLIENTE']);
-            $date = DateTime::createFromFormat('d/m/Y', $key["FECHA"]);
-            $forSQL = $date->format('Y-m-d');
+
             if (intval($Remanente) > 0) {
-                //$json[$i]=array(date('Y-m-d',strtotime($key["FECHA"])),$key["CLIENTE"],$name,$key["FACTURA"],$key["TOTAL"],$Remanente);
                 $data[$i]=
                     array(
-                        'mFecha' => date('Y-m-d',strtotime($key["FECHA"])),
-                        'mFecha2' => $key["FECHA"],
-                        'mFecha3' => $key["FECHA"],
-                        'mCliente' => $forSQL,
+                        'mFecha' =>$key["FECHA"]->format('Y-m-d'),
+                        'mCliente' => $key["CLIENTE"],
+                        //'mFecha' => $forSQL,
                         'mNombre' => $name,
                         'mFactura' => $key["FACTURA"],
-                        'mPuntos' => number_format($key["TOTAL"],0),
-                        'mRemanente' => number_format($Remanente,0)
+                        'mPuntos' => $key["TOTAL"],
+                        'mRemanente' => $Remanente
                     );
                 $i++;
             }
@@ -70,7 +106,7 @@ class Puntos_model extends CI_Model
 
 
 
-       //$this->db->insert_batch('mpoint', $data);
+       $this->db->insert_batch('mpoint', $data);
         //$this->insert_rows('mpoint', $json,false);
         //echo $i;
         //echo ($query) ? true : false ;
@@ -136,11 +172,8 @@ class Puntos_model extends CI_Model
 
     public function FacturaSaldo($id,$pts){
 
-        $this->db->limit(1);
-        $this->db->order_by('FechaActualizacion', 'DESC');
-        $this->db->where('Factura',$id);
-        $this->db->select('Puntos');
-        $query = $this->db->get('visys.rfactura');
+        $query = $this->db->query("SELECT * FROM visys.rfactura WHERE Factura='".$id."' ORDER BY FechaActualizacion DESC");
+
         if($query->num_rows() > 0){
             $parcial = $query->result_array()[0]['Puntos'];
         } else {
@@ -168,6 +201,20 @@ class Puntos_model extends CI_Model
         {
             $value = "'" .mysql_real_escape_string($value) . "'";
         }
+    }
+
+    function get_facturas_puntos($Cliente){
+        $i = 0;
+        $json = array();
+        $query = $this->db->query("SELECT * FROM mpoint WHERE mCliente='".$Cliente."'");
+        foreach ( $query->result_array()as $item) {
+            $json["data"][$i]["mFactura"]     = $item['mFactura'];
+            $json["data"][$i]["mFecha"]       = date('d/m/Y',strtotime($item['mFecha']));
+            $json["data"][$i]["mRemanente"]   = number_format($item['mRemanente'],0);
+            $i++;
+        }
+        echo json_encode($json);
+
     }
 
 }

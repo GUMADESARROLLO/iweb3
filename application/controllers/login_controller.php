@@ -6,6 +6,7 @@ class Login_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Main_model');
         $this->load->model('login_model');
         $this->load->library('session');
         $this->load->helper('cookie');
@@ -43,7 +44,8 @@ class Login_controller extends CI_Controller
                 $this->session->set_userdata($sessiondata);
 
                 if ($this->session->userdata) {
-                    redirect('Main');
+                    $Menu['List_menus'] = $this->Main_model->get_permission();
+                    redirect(($Menu['List_menus']!=0) ? "Main" : "Main_Clean");
                 }
 
 

@@ -1,38 +1,42 @@
-<?php $name = $this->session->userdata('UserN');?>
-
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <img style="margin-top: 50px;" width="100%" src="<?PHP echo base_url();?>assets/img/logoUMK.png"  >
         <header id="MenuFondo" class="demo-drawer-header">
-
-
             <div id="user" class="row">
                 <div class="col l2 center carita">
                   <i class=" material-icons">face</i>
                 </div>
                 <div class="col l10 center">
-                  <span class="Loggen"><?php echo $name?></span>
+                  <span class="Loggen"><?php echo $this->session->userdata('UserN');?></span>
                 </div>
             </div>
+
         </header>
+
+
+        <?php
+        if($this->uri->segment(1)=="Main"){
+            echo '';
+        }else{
+
+        }
+        ?>
        <div id="menu">
-           <ul class="nav menu demo-navigation mdl-navigation__link RobotoR" >
-            <?php
-            if ($List_menus!=0){
-                foreach ($List_menus as $Keys){
-                    if ($Keys['modules_id']=="Stat"){
-                        echo '<a href="Stat"><li href="Stat"><img src="'.base_url("assets/img/icon_stat.png").'"></li></a>';
-                    }else{
-                        echo '<a href="'.$Keys['modules_id'].'"><li href="'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i> '.$Keys['Full_name'].'</li></a>';
-                    }
-                }
-            }else{
-                echo '<a href="!#"><li href="!#"><i class="material-icons">error_outline</i> Error 403</li></a>';
-            }
-            ?>
+           <ul class="nav menu demo-navigation mdl-navigation__link RobotoR " >
+               <a href="Main" id="Main"><li href="Main"><i class="material-icons">home</i> inventario</li></a>
+               <a href="Main2"><li href="Main2"><i class="material-icons">home</i> inventario</li></a>
+               <a href="PUNTOS"> <li href="PUNTOS"><i class="material-icons">assignment</i> PUNTOS</li></a>
+               <a href="Main"><li href="Main"><img src="<?php echo base_url("assets/img/icon_stat.png")?>"></a>
+               <a href="6Meses"> <li href="6Meses"><i class="material-icons">attach_money</i> liquidacion a 6 meses</li></a>
+               <a href="12Meses"> <li href="12Meses"><i class="material-icons">monetization_on</i> liquidacion a 12 meses</li></a>
+               <a href="Reserva"> <li href="Reserva"><i class="material-icons">lock</i> Reserva</li></a>
+               <a href="InvBodega"> <li href="InvBodega"><i class="material-icons">assignment</i> INV. POR BODEGA</li></a>
+               <a href="Usuarios"> <li href="Usuarios"><i class="material-icons">account_box</i> usuarios</li></a>
                <a href="#" onclick="modalPass()"> <li href="#"><i class="material-icons">lock</i> Cambiar Contraseña</li></a>
-               <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</li></a>\';
-               <a href="#" > <li href="#" id="Salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
+               <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</a></li>\';
+               <a href="#" > <li href="#" id="Salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>
+
+
           </ul>
        </div>
     </div>

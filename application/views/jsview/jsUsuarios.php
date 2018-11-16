@@ -127,4 +127,51 @@ function eliminaUsuario(elem)
         });
     });
     }
+
+    function setDominios(idUser) {
+
+        $('#mdl-privilegios').openModal();
+        $.ajax({
+            url:'ajax_Mod/' + idUser,
+            dataType: "json",
+            complete: function (response) {
+                var data = JSON.parse(response.responseText);
+                var   tbody = '<thead>' +
+                    '<tr>' +
+                    '<th>DESCRIPCION DE PERMISO</th>' +
+                    '<th></th>' +
+                    '</tr>' +
+                    '</thead>';
+                console.log(data);
+                $.each(data, function (i, d) {
+                    for (var x=0; x<d.length; x++) {
+                        tbody += '<tr>' +
+                            '<td>' + d[x].name + '</td>' +
+                            '<td>' + d[x].chck + '</td>' +
+                            '</tr>';
+                    }
+
+                });
+                $( "#id-tabla" ).html(($('<table class="table striped RobotoR" ><tbody>' +tbody + '</tbody></table>')));
+
+            },
+            error: function () {
+                console.log('Hubo un error al cargar los detalles!');
+            }
+        });
+    }
+    function getPermiso(gpUsu,gpMod) {
+        $.ajax({
+            url: "ajax_SavePermisos",
+            type: 'post',
+            async: true,
+            data: {
+                gpUsu : gpUsu,
+                gpMod : gpMod
+            },
+            success: function(data) {
+
+            }
+        });
+    }
 </script>

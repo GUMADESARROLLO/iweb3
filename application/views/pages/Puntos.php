@@ -40,9 +40,9 @@
             <table class="table striped RobotoR" id="tblArticulos">
                 <thead>
                     <tr>
-                        <th>Codigo</th>
-                        <th>NOMBRE</th>
-                        <th>PUNTOS</th>
+                        <th>COD. CLIENTE</th>
+                        <th>NOMBRE DEL CLIENTE</th>
+                        <th>PUNTOS DISP.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@
                                     <tr>
                                         <td><a href='#' onclick='getTransac(".'"'.$key['mCliente'].'","'.str_replace("'","",$key['mNombre']).'"'.")'>".$key["mCliente"]."</a></td>
                                         <td class='left'>".$key["mNombre"]."</td>
-                                        <td>".$key['mPuntos']."</td>
+                                        <td>".number_format($key['mPuntos'],0)."</td>
                                         
                                     </tr>
                                 ";
@@ -78,21 +78,29 @@
           <div class="modal-content">
               <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
               <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
-              <h5 class="center indigo-text darken-4" id="h6Articulo">CODIGO: <span id="modalIdArticulo"></span></h5>
+              <div class="row" >
+                  <div class="col s6 ">
+                      <h5 class="center indigo-text darken-4" id="h6Articulo">CLIENTE: <span id="modalIdArticulo"></span></h5>
+                  </div>
+                  <div class="col s6 ">
+                    <h5 class="center indigo-text darken-4" id="h6Articulo">Pts: <span id="tTotalPuntos"></span></h5>
+                  </div>
+              </div>
               <br>
               <table class="table striped RobotoR" id="tbl_trasn">
                   <thead>
                   <tr>
-                      <th>CODIGO</th>
+                      <th >CODIGO</th>
                       <th>FECHA</th>
-                      <th>PUNTOS</th>
+                      <th>PUNTOS DISP.</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="Centrado">
 
                   </tbody>
               </table>
     </div>
     <!-- <div class="modal-footer">
     </div> -->
+
 

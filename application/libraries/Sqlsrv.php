@@ -105,7 +105,7 @@ class Sqlsrv
      */
     public function query($query)
     {
-        $this->statement = sqlsrv_query($this->connection, $query);
+        $this->statement = sqlsrv_query($this->connection, $query, array(), array("Scrollable"=>"buffered"));
         if (!$this->statement) {
             die(print_r(sqlsrv_errors(), true));
         }
@@ -117,6 +117,14 @@ class Sqlsrv
      * Return Last entered ID
      * @return integer
      */
+
+    public function count_all($TABLE){
+
+        $stmt = $this->query("Select * from ".$TABLE);
+
+        return sqlsrv_num_rows( $stmt );
+
+    }
     public function lastInsertId()
     {
         $scopeId = (int) $this->fetchCol("SELECT SCOPE_IDENTITY() AS SCOPE_IDENTITY");

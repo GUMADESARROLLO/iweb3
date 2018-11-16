@@ -13,6 +13,7 @@ $(document).ready(function(){
 
     $("#tbl6Meses,#tbl12Meses").dataTable({
     responsive:true,
+    stateSave: true,
      "autoWidth":false,
      "info": true,
                 "sort":true,

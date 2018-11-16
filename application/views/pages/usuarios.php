@@ -44,7 +44,10 @@
                                         <td>".$key["VendedorCod"]."</td>
                                         <td>".$key["DateCreado"]."</td>
                                         <td>".$key["privi"]. "</td>
-                                        <td><a class='tooltipped' data-tooltip='eliminar ".$key['Username']."' data-position='left' href='#' id='".$key['idtblusers']."' onclick='eliminaUsuario(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>delete</i></a></td>
+                                        <td>
+                                        <a class='tooltipped' data-tooltip='eliminar ".$key['Username']."' data-position='left' href='#' id='".$key['idtblusers']."' onclick='eliminaUsuario(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>delete</i></a>
+                                        <a  href='#' onclick='setDominios(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>delete</i></a>
+                                        </td>
                                     </tr>
                                 ";
                             }
@@ -89,3 +92,25 @@
       </div>
     </div>
   </div>
+
+<!--MODAL privilegios-->
+<div class="modal fade bd-example-modal-lg" id="mdl-privilegios" tabindex="-1" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Privilegio del usuario</h5>
+                <span id="id_select_user" style="display: none">0</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm" id="id-tabla">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

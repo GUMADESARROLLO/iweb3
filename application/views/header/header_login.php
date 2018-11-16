@@ -8,7 +8,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="<?PHP echo base_url();?>assets/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="<?PHP echo base_url();?>assets/css/styles.css"  media="screen,projection"/>
-     <link rel="stylesheet" href="<?PHP echo base_url(); ?>assets/css/sweetalert2.min.css"> 
+     <link rel="stylesheet" href="<?PHP echo base_url(); ?>assets/css/sweetalert2.min.css">
     <link rel="shortcut icon" href="" />
 </head>
 <body id="contenedorL">

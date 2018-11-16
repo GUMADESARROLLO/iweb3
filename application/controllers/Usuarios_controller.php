@@ -6,6 +6,7 @@ class Usuarios_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Main_model');
         $this->load->model("Usuarios_model");
         $this->load->library("session");
         if ($this->session->userdata('logged') == 0) {
@@ -19,7 +20,8 @@ class Usuarios_controller extends CI_Controller
     {
         $data["Usuarios"] = $this->Usuarios_model->getUsuarios();
         $this->load->view('header/header');
-        $this->load->view('pages/menu');
+        $Menu['List_menus'] = $this->Main_model->get_permission();
+        $this->load->view('pages/menu',$Menu);
         $this->load->view('pages/usuarios',$data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/jsUsuarios');

@@ -8,6 +8,60 @@ $(document).ready(function(){
         var table = $('#tblArticulos').DataTable();
         table.page.len(this.value).draw();
     });
+    $( "#frm_Item_row").change(function() {
+
+        $('#tblArticulos').DataTable( {
+            "ajax": "ajx_rutas/" + this.value,
+            responsive:true,
+            "autoWidth":false,
+            "destroy": true,
+            //stateSave: true,
+            "info": false,
+            "sort":true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+                "sSwfPath": "<?php echo base_url("assets/data/swf/copy_csv_xls_pdf.swf"); ?>"
+            },
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10,100, -1],
+                [10,100, "Todo"]
+            ],
+            "order": [
+                [1, "asc"]
+            ],
+            "language": {
+                "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                "zeroRecords": "No se encontro coincidencia",
+                "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                "lengthMenu": '_MENU_ ',
+                "search": '<i class=" material-icons">search</i>',
+                "loadingRecords": " ",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última ",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            "columns": [
+                { "data": "CODIGO" },
+                { "data": "DESCRI" },
+                { "data": "PRECIO" },
+                { "data": "BDG002" },
+                { "data": "BDG006" },
+                { "data": "PUNTOS" }
+            ],
+            initComplete: function () {
+                this.api().columns([3]).every( function () {
+                    $("#searchCatalogo").attr("placeholder", "Buscar entre "+this.data().count()+" articulos");
+                } );
+                $("#tblArticulos_length").hide();
+            }
+        } );
+    });
     $('.select2').select2();
 });
 
@@ -16,6 +70,8 @@ $(document).ready(function(){
     $("#tblArticulos").DataTable( {
         responsive:true,
         "autoWidth":false,
+        "destroy": true,
+        //stateSave: true,
         "info": true,
         "sort":true,
         "dom": 'T<"clear">lfrtip',
@@ -65,9 +121,31 @@ $(document).ready(function(){
         }
     } );
 
-    $("#tblArticulos_length" ).hide();
+    $("#tblArticulos_length").hide();
 
     $("#blfooterMaster").hide();
+
+
+    $('#posts').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax":{
+            "url": "<?php echo base_url('home/posts') ?>",
+            "dataType": "json",
+            "type": "POST",
+            "data":{  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' }
+        },
+        "columns": [
+            { "data": "id" },
+            { "data": "title" },
+            { "data": "body" },
+            { "data": "created_at" },
+        ]
+
+    });
+
+
+
 
     function getTransac(elem,nombre) {
          $("#modalArtic").openModal({

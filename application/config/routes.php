@@ -14,6 +14,9 @@ $route['salir'] = 'login_controller/Salir';
 
 //MAIN 
 $route['Main'] = 'Main_controller/index';
+$route['Main2'] = 'Main_controller/main2';
+$route['Main_Clean'] = 'Main_controller/main_clean';
+$route['ajx_rutas/(:any)'] = 'Main_controller/get_ajx_item/$1';
 $route['Transacciones/(:any)'] = 'Main_controller/getTransacciones/$1';
 $route['TransaccionesDetalles/(:any)/(:any)/(:any)/(:any)'] = 'Main_controller/getTransaccionesDetalles/$1/$2/$3/$4';
 $route['Ingresos/(:any)/(:any)'] = 'Main_controller/getIngresos/$1/$2';
@@ -41,3 +44,14 @@ $route["ActualizaUsuarios"] = "Usuarios_controller/actualizarPass";
 //PUNTOS
 $route['PUNTOS'] = 'Puntos_controller/index';
 $route['ALLPOINT'] = 'Puntos_controller/getAllPoint';
+$route['ajax_getTransac/(:any)'] = 'Puntos_controller/get_facturas_puntos/$1';
+
+$route['ajax_Mod']	= 'Main_controller/lst_ajax_Modulos';
+$route['ajax_Mod/(:any)']	= 'Main_controller/lst_ajax_Modulos/$1';
+$route['ajax_SavePermisos']	        = 'Main_controller/lst_ajax_SavePermisos';
+
+$route["Stat"] = "stat_controller";
+$route["ajax_Stat"] = "stat_controller/getStat";
+
+$route['only002'] = 'Main_controller/only002';
+$route['ajax_only002'] = 'Main_controller/ajax_only002';
