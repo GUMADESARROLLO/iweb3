@@ -55,3 +55,10 @@ $route["ajax_Stat"] = "stat_controller/getStat";
 
 $route['only002'] = 'Main_controller/only002';
 $route['ajax_only002'] = 'Main_controller/ajax_only002';
+
+$route['Catalogos'] = 'Main_controller/Catalogos';
+$route['ajax_Catalogos'] = 'Main_controller/ajax_Catalogos';
+
+$route['Disp_Clientes'] = 'Main_controller/Disp_Clientes';
+$route['ajax_Disp_Clientes'] = 'Main_controller/ajax_Disp_Clientes';
+

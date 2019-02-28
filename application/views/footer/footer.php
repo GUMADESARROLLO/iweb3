@@ -30,6 +30,9 @@
 
 <script src="<?PHP echo base_url();?>assets/js/bootstrap.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/select2.min.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/highcharts.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/exporting.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/export-data.js"></script>
 <!--<script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>-->
 
 <script>

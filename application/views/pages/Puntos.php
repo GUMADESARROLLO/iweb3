@@ -29,14 +29,17 @@
                                 <option value="-1">Todas las filas...</option>
                             </select>
                         </div>
-
                     </div>
                 </div>
+                <div> Ultima actualización: <?php echo $Lst_Update[0]['Fecha']; ?></div>
             </div>
         </div>
+
         <div class="row" style="width:100%">
+
             <div STYLE="margin-right: 10px;" class="right m12" id="lstProveedores"></div>
         <div class="row center">
+
             <table class="table striped RobotoR" id="tblArticulos">
                 <thead>
                     <tr>

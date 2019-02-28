@@ -1,63 +1,66 @@
 <header class="demo-header mdl-layout__header ">
-    <div class="centrado  ColorHeader"><span class=" title">UNIMARK S.A</span></div>
+    <div class="row" >
+        <div class="col s4" >
+            <br><a href="Main"><i class="material-icons blue-text">menu</i></a>
+        </div>
+        <div class="col s4" >
+            <div class="ColorHeader"><span class="center-align title">UNIMARK S.A</span></div>
+        </div>
+        <div class="col s4" >
+            <br>
+        </div>
+    </div>
 </header>
-
-<main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-grid demo-content">
-        <div class="row">
-            <div class="col s12 m12">
-                <div class="card hoverable horizontal">
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col s9 m7">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" id="searchCatalogo" class="validate mayuscula">
-                        </div>
-                        <div class="col s1 m2" style="margin-top: 10px">
-                            <select class="browser-default" id="frm_lab_menu">
-                                <option value="">ESTADOS...</option>
-                            </select>
-                        </div>
-                        <div class="col s1 m2" style="margin-top: 10px">
-                            <select class="browser-default" id="frm_lab_row">
-                                <option value="10">10</option>
-                                <option value="100">100</option>
-                                <option value="-1">Todas las filas...</option>
-                            </select>
-                        </div>
-                        <div class="col s1 m1 center" style="margin-top: 10px">
-                            <a id="mdlDetalles"  href="#"><i class="material-icons">info</i></a>
-                        </div>
-
-                    </div>
+<br>
+<div class="left" id="lstEstados"></div>
+<div class="mdl-grid demo-content">
+    <div class="row" >
+        <div class="card hoverable horizontal">
+            <div class="row" style="margin-top: 20px">
+                <div class="col s9 m7">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="searchCatalogo" class="validate mayuscula">
                 </div>
+                <div class="col s1 m2" style="margin-top: 10px">
+                    <select class="browser-default" id="frm_lab_menu">
+                        <option value="">ESTADOS...</option>
+                    </select>
+                </div>
+                <div class="col s1 m2" style="margin-top: 10px">
+                    <select class="browser-default" id="frm_lab_row">
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="-1">Todas las filas...</option>
+                    </select>
+                </div>
+                <div class="col s1 m1 center" style="margin-top: 10px">
+                    <a id="mdlDetalles"  href="#"><i class="material-icons">info</i></a>
+                </div>
+
             </div>
         </div>
-    <div class="mdl-grid demo-content">
-        <div class="row" style="width:100%">
-
-            <div class="left" id="lstEstados"></div>
-
-        <div class="row center">
-            <table class="table striped" id="tblArticulos">
+    </div>
+    <div class="row">
+        <table class="table striped" id="tblArticulos">
                 <thead>
-                    <tr>
-                        <th> ARTICULO</th>
-                        <th> DESCRIPCIÓN</th>
-                        <th> CANTIDAD DISPONIBLE</th>
-                        <th> CANTIDAD EN RESERVA</th>
-                        <th> RESERVAR S/N</th>
-                        <th> TOTAL A RESERVAR</th>
-                        <th> TOTAL AÑO</th>
-                        <th> PROM MENSUAL 3</th>
-                        <th> PROM MENSUAL 6</th>
-                        <th> CONSUMO MINIMO DIARIO</th>
-                        <th> CONSUMO MAXIMO DIARIO</th>
-                        <th> CANTIDAD A PEDIR</th>
-                        <th> EXISTENCIAS MINIMAS</th>
-                        <th> EXISTENCIAS MAXIMAS</th>
-                        <th> PUNTO DE REORDEN</th>
-                        <th style="display: none"></th>
-                    </tr>
+                <tr>
+                    <th> ARTICULO</th>
+                    <th> DESCRIPCIÓN</th>
+                    <th> CANTIDAD DISPONIBLE</th>
+                    <th> CANTIDAD EN RESERVA</th>
+                    <th> RESERVAR S/N</th>
+                    <th> TOTAL A RESERVAR</th>
+                    <th> TOTAL AÑO</th>
+                    <th> PROM MENSUAL 3</th>
+                    <th> PROM MENSUAL 6</th>
+                    <th> CONSUMO MINIMO DIARIO</th>
+                    <th> CONSUMO MAXIMO DIARIO</th>
+                    <th> CANTIDAD A PEDIR</th>
+                    <th> EXISTENCIAS MINIMAS</th>
+                    <th> EXISTENCIAS MAXIMAS</th>
+                    <th> PUNTO DE REORDEN</th>
+                    <th style="display: none"></th>
+                </tr>
                 </thead>
 
                 <tfoot style="display: none">
@@ -82,46 +85,45 @@
                 </tfoot>
 
                 <tbody>
-                    <?php
-                        if(!$Articulos){
-                        }
-                        else{
-                            foreach($Articulos["data"] as $key){
+                <?php
+         if(!$Articulos){
+         }
+         else{
+             foreach($Articulos["data"] as $key){
 
 
-                                $SN = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "S" : "N" ;
-                                $COLOR = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "#FF9595" : "#05539E" ;
-                                echo "
-                                    <tr style='background-color: ".$COLOR."'>
-                                        <td>".$key["ARTICULO"]."</td>
-                                        <td style='text-align: center'>".$key['desc']."</td>
-                                             <td style='text-align: center'>".$key['EXISTENCIAS']."</td>
-                                             <td style='text-align: center'>".$key['CANT_RESER']."</td>
-                                             <td style='text-align: center'>".$SN."</td>
-                                             <td style='text-align: center'>".$key['reserva']."</td>
-                                             <td style='text-align: center'>".$key['TOTAL_A']."</td>
-                                             <td style='text-align: center'>".number_format($key['prom_3_meses'],0)."</td>
-                                             <td style='text-align: center'>".number_format($key['prom_6_meses'],0)."</td>
-                                             <td style='text-align: center'>".$key['CONSUM_MIN_DIARIO']."</td>
-                                             <td style='text-align: center'>".$key['CONSUM_MAX_DIARIO']."</td>
-                                             <td style='text-align: center'>".$key['CANT_PEDIDO']."</td>
-                                             <td style='text-align: center'>".$key['EXIST_MIN']."</td>
-                                             <td style='text-align: center'>".$key['EXIST_MAX']."</td>
-                                             <td style='text-align: center'>".$key['PUNTO_REORDEN']."</td>
-                                             
-                                             <td style='display: none'>".((($key['EXISTENCIAS']!=0)) ? 'Sin Reserva' : "En Reserva")."</td>
-                                    </tr>";
+                 $SN = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "S" : "N" ;
+                 $COLOR = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "#FF9595" : "#05539E" ;
+                 echo "
+                     <tr style='background-color: ".$COLOR."'>
+                         <td>".$key["ARTICULO"]."</td>
+                         <td style='text-align: center'>".$key['desc']."</td>
+                              <td style='text-align: center'>".$key['EXISTENCIAS']."</td>
+                              <td style='text-align: center'>".$key['CANT_RESER']."</td>
+                              <td style='text-align: center'>".$SN."</td>
+                              <td style='text-align: center'>".$key['reserva']."</td>
+                              <td style='text-align: center'>".$key['TOTAL_A']."</td>
+                              <td style='text-align: center'>".number_format($key['prom_3_meses'],0)."</td>
+                              <td style='text-align: center'>".number_format($key['prom_6_meses'],0)."</td>
+                              <td style='text-align: center'>".$key['CONSUM_MIN_DIARIO']."</td>
+                              <td style='text-align: center'>".$key['CONSUM_MAX_DIARIO']."</td>
+                              <td style='text-align: center'>".$key['CANT_PEDIDO']."</td>
+                              <td style='text-align: center'>".$key['EXIST_MIN']."</td>
+                              <td style='text-align: center'>".$key['EXIST_MAX']."</td>
+                              <td style='text-align: center'>".$key['PUNTO_REORDEN']."</td>
+
+                              <td style='display: none'>".((($key['EXISTENCIAS']!=0)) ? 'Sin Reserva' : "En Reserva")."</td>
+                     </tr>";
 
 
-                            }
-                        }
-                    ?>
+             }
+         }
+        ?>
                 </tbody>
             </table>
-        </div>
-  </div>
+    </div>
 </div>
-</main>
+
 <div id="ModalDetalles" class="modal">
 <div class="modal-content">
     <table id="tblAlvaro" style="font-size:11px;">

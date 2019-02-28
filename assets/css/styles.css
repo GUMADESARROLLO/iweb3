@@ -1607,3 +1607,6 @@ select.swal2-select{
     display:none;
 }
 
+.hide_transaccion{
+    display: none;
+}

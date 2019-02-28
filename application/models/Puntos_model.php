@@ -52,11 +52,17 @@ class Puntos_model extends CI_Model
 
       //  echo json_encode($json);
 
-          $query = $this->db->get('vstpuntos');
+          //$query = $this->db->get('vstpuntos');
         $query = $this->db->query("SELECT * FROM vstpuntos ");
         if ($query->num_rows() > 0) {
             return $query->result_array();
         }        
+    }
+    public function Last_Update(){
+        $query = $this->db->query("SELECT * FROM udt_puntos ORDER BY id DESC LIMIT 1");
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
     }
 
     public function getTransaccines($ID){
@@ -100,8 +106,6 @@ class Puntos_model extends CI_Model
 
         }
 
-        //TODO QUEDA PENDIENTE LA VALIDACION DE LOS PUNTOS CORRESPODIENTES
-
        // echo  json_encode($data);
 
 
@@ -110,6 +114,10 @@ class Puntos_model extends CI_Model
         //$this->insert_rows('mpoint', $json,false);
         //echo $i;
         //echo ($query) ? true : false ;
+        $this->db->insert('udt_puntos', array(
+            'Fecha' =>date('Y-m-d h:i:s'),
+            'Usuario' => $this->session->userdata('id')
+        ));
         $this->sqlsrv->close();
     }
     function sanear_string($string)

@@ -17,6 +17,7 @@ class Puntos_controller extends CI_Controller
     {
        // $this->Puntos_model->listarArticulos();
         $data['CLIENTES'] = $this->Puntos_model->listarArticulos();
+        $data['Lst_Update'] = $this->Puntos_model->Last_Update();
         $this->load->view('header/header');
         $Menu['List_menus'] = $this->Main_model->get_permission();
         $this->load->view('pages/menu',$Menu);

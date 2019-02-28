@@ -25,7 +25,7 @@
                     <tr>
                         <th>Username</th>
                         <th>Empresa</th>
-                        <th>VendedorCod</th>
+                        <th>Nombre</th>
                         <th>Fecha Registro</th> 
                         <th>Privilegio</th>
                         <th>Acciones</th>
@@ -46,7 +46,7 @@
                                         <td>".$key["privi"]. "</td>
                                         <td>
                                         <a class='tooltipped' data-tooltip='eliminar ".$key['Username']."' data-position='left' href='#' id='".$key['idtblusers']."' onclick='eliminaUsuario(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>delete</i></a>
-                                        <a  href='#' onclick='setDominios(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>delete</i></a>
+                                        <a  href='#' onclick='setDominios(".'"'.$key['idtblusers'].'"'.")'><i class='material-icons'>settings</i></a>
                                         </td>
                                     </tr>
                                 ";
@@ -66,8 +66,8 @@
       <h4 class="center indigo-text darken-4">Registrar Usuario</h4><br>
       <div class="row">
           <div class="input-field col s6 m6 s6">
-               <input type="text" id="CodVend" name="CodVend" placeholder="Codigo Vendedor">
-               <label for="lblCodVend" id="lblCodVend">Codigo Vendedor</label>               
+               <input type="text" id="CodVend" name="CodVend" placeholder="Nombre Usuario">
+               <label for="lblCodVend" id="lblCodVend">Nombre </label>               
           </div>
           <div class="input-field col s6 m6 s6">
                <input type="text" id="Empresa" name="Empresa" placeholder="Empresa">
@@ -78,7 +78,7 @@
         <div class="row">
            <div class="input-field col s6 m6 s6">
                <input type="text" id="Username" name="Username" placeholder="Nombre de usuario">
-               <label for="lblUsername" id="lblUsername">Nombre de usuario</label>               
+               <label for="lblUsername" id="lblUsername">Usuario</label>               
           </div>
            <div class="input-field col s6 m6 s6">
                <input type="password" id="Password" name="Password" placeholder="Contraseña">

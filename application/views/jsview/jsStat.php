@@ -8,6 +8,9 @@ $(document).ready(function(){
         var table = $('#tblArticulos').DataTable();
         table.page.len(this.value).draw();
     });
+
+
+
     $('#tblArticulos').DataTable( {
         "ajax": "ajax_Stat" ,
         responsive:true,

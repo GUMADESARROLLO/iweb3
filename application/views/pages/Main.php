@@ -8,16 +8,16 @@
             <div class="col s12 m12">
                 <div class="card hoverable horizontal">
                     <div class="row" style="margin-top: 20px">
-                        <div class="col s10 m8">
+                        <div class="col s10 m9">
                             <i class="material-icons prefix">search</i>
                             <input type="text" id="searchCatalogo">
                         </div>
                         <div class="col s1 m2" style="margin-top: 10px">
-                            <select class="browser-default select2" id="frm_lab_menu">
+                            <select class="browser-default " id="frm_lab_menu">
                                 <option value="">LABORATORIOS...</option>
                             </select>
                         </div>
-                        <div class="col s1 m2" style="margin-top: 10px">
+                        <div class="col s1 m1" style="margin-top: 10px">
                             <select class="browser-default" id="frm_lab_row">
                                 <option value="10">10</option>
                                 <option value="100">100</option>
@@ -116,11 +116,16 @@
           <li class="tab col s3"><a class="active RobotoR" id ="tlBdg"  href="#bodega">Bodega</a></li>
           <li class="tab col s3"><a class="RobotoR" href="#precio">Precios</a></li>
           <li class="tab col s3"><a class="RobotoR" href="#bonificado">Bonificados</a></li>
-          <li class="tab col s3"><a class="RobotoR" id="tblTrans" href="#trans">Transacciones</a></li>
+
+          <?php
+          if($hideTransaccion==''){
+              echo '<li class="tab col s3 "><a class="RobotoR " id="tblTrans" href="#trans">Transacciones</a></li>';
+          }
+          ?>
       </ul>
     </div>
 <br>
-    <div id="trans" class="col s12">
+    <div id="trans" class="col s12 <?php echo $hideTransaccion?>">
 <div class="center">
     <div class="preloader-wrapper big active" id="load">
         <div class="spinner-layer spinner-blue-only">

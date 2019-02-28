@@ -14,28 +14,40 @@ $(document).ready(function()
 $("#mdlDetalles").on("click",function () {
     $("#ModalDetalles").openModal();
 });
-$("#tblArticulos").DataTable( {
+
+$('#tblArticulos').DataTable( {
+    scrollX:        true,
+    "fixedColumns":   {
+        leftColumns: 7
+    },
     responsive:true,
+    stateSave: true,
     "autoWidth":false,
-    "info": false,
-    "scrollY": 600,
-    "scrollX": true,
-    "scrollCollapse": true,
-    "sort":true,
+    "destroy": true,
     "dom": 'T<"clear">lfrtip',
     "tableTools": {
         "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
     },
+    //stateSave: true,
+    "info": false,
+    "sort":true,
     "pagingType": "full_numbers",
     "lengthMenu": [
         [5,100, -1],
         [5,100, "Todo"]
     ],
+    "order": [
+        [0, "asc"]
+    ],
     "language": {
+        "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+        "infoEmpty": "Registro 0 a 0 de 0 entradas",
+        "zeroRecords": "No se encontro coincidencia",
+        "infoFiltered": "(filtrado de _MAX_ registros en total)",
         "emptyTable": "NO HAY DATOS DISPONIBLES",
         "lengthMenu": '_MENU_ ',
         "search": '<i class=" material-icons">search</i>',
-        "loadingRecords": "Cargando...",
+        "loadingRecords": " ",
         "paginate": {
             "first": "Primera",
             "last": "Última ",
@@ -46,6 +58,7 @@ $("#tblArticulos").DataTable( {
     initComplete: function () {
         this.api().columns([15]).every( function () {
             var column = this;
+
             var select = $('#frm_lab_menu').on( 'change', function () {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
                 column.search( val ? '^'+val+'$' : '', true, false ).draw();
@@ -54,10 +67,14 @@ $("#tblArticulos").DataTable( {
             column.data().unique().sort().each( function ( d, j ) {
                 select.append( '<option value="'+d+'">'+d+'</option>' )
             } );
+
+
             $("#searchCatalogo").attr("placeholder", "Buscar entre "+this.data().count()+" articulos");
         } );
+
     }
 } );
+
 $( "#tblArticulos_length" ).hide();
 $("#blfooterMaster").hide();
 </script>

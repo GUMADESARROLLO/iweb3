@@ -4,8 +4,6 @@
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <img style="margin-top: 50px;" width="100%" src="<?PHP echo base_url();?>assets/img/logoUMK.png"  >
         <header id="MenuFondo" class="demo-drawer-header">
-
-
             <div id="user" class="row">
                 <div class="col l2 center carita">
                   <i class=" material-icons">face</i>

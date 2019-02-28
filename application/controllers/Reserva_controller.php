@@ -19,10 +19,7 @@ class Reserva_controller extends CI_Controller
     {
         $data['Articulos'] = $this->Reserva_model->listarArticulos();
         $this->load->view('header/header');
-        $Menu['List_menus'] = $this->Main_model->get_permission();
-        $this->load->view('pages/menu',$Menu);
         $this->load->view('pages/Reserva',$data);
-        //$this->load->view('pages/Reserva');
         $this->load->view('footer/footer');
         $this->load->view('jsview/jsReserva');
     }

@@ -1,56 +1,72 @@
 <header class="demo-header mdl-layout__header ">
     <div class="centrado  ColorHeader"><span class=" title">UNIMARK S.A - SUPLIENDO SALUD</span></div>
 </header>
-
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid demo-content">
-        <span class="flow-text TextColor Centrado">información de ventas.</span>
-
-
-
-
         <div class="row" style="width:100%">
             <div class="row">
                 <div class="col s12 m12">
+
                     <div class="card hoverable horizontal">
                         <div class="row" style="margin-top: 20px">
-                            <div class="col s10 m10">
-                                <br>
-                                <input type="text" id="searchCatalogo">
+                            <div class="col s10 m7"><br>
+                                <input type="text" id="searchCatalogo" placeholder="Buscar...">
                             </div>
-
+                            <div class="col s1 m2" style="margin-top: 10px">
+                                <select class="browser-default" id="frm_mora">
+                                    <option value="">...</option>
+                                    <option value="S">En Mora</option>
+                                    <option value="N">No Moroso</option>
+                                </select>
+                            </div>
+                            <div class="col s1 m2" style="margin-top: 10px">
+                                <select class="browser-default" id="frm_ruta_row">
+                                    <option value="">Rutas...</option>
+                                </select>
+                            </div>
                             <div class="col s1 m1" style="margin-top: 10px">
                                 <select class="browser-default" id="frm_lab_row">
                                     <option value="10">10</option>
                                     <option value="100">100</option>
-                                    <option value="-1">Todas las filas...</option>
+                                    <option value="-1">Todas...</option>
                                 </select>
                             </div>
-                            <div class="col s1 m1" style="margin-top: 10px">
-                                <select class="browser-default" id="frm_anno">
-                                    <option value="-1">...</option>
-                                </select>
-                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s1 m10">
+                            <span id="id_span_count_item"></span>
+                        </div>
+                        <div class="col s1 m2 right">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="white"><i class="red-text material-icons">fiber_manual_record</i></td>
+                                    <td class="white">MOROSO</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        <div class="row center">
-            <table class="table striped RobotoR" id="tblArticulos">
-                <thead>
-                <tr>
-                    <th>BODEGA</th>
-                    <th>LABORATORIO</th>
-                    <th>ARTICULO</th>
-                    <th>DESCRIPCION</th>
-                    <th>AÑO</th>
-                    <th>TOTAL ART VENDIDO</th>
-                    <th>UNIDAD VENDIDA ANUAL</th>
-                    <th>TOTAL VENTA ANUAL</th>
-                    <th>PROMEDIO VENTA ANUAL</th>
-                </tr>
-                </thead>
 
+        <div class="row center">
+            <table id="tblCatalogos">
+                <thead>
+                    <tr>
+                        <th>CLIENTE</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCION</th>
+                        <th>LIMITE CREDITO</th>
+                        <th>CREDITO. DISP</th>
+                        <th>SALDO</th>
+                        <th>ESTADO ACTUAL</th>
+                        <th>RUTA</th>
+                        <th>MOROSO</th>
+                    </tr>
+                </thead>
                 <tbody>
 
                 </tbody>
