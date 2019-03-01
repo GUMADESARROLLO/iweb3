@@ -174,6 +174,7 @@ class Main_model extends CI_Model
        
         foreach ($query as $fila) {
             $porciones = explode(",", $fila["REGLAS"]);
+
             for($n=0;$n<count($porciones);$n++){
                 $json["data"][$i]["REGLAS"] = $porciones[$n];
                 $i++;
@@ -183,6 +184,8 @@ class Main_model extends CI_Model
 
         $json["columns"][0]["data"] = "REGLAS";
         $json["columns"][0]["name"] = "REGLAS";
+
+
 
         echo json_encode($json);
         $this->sqlsrv->close();

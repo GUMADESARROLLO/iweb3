@@ -21,9 +21,6 @@ $(document).ready(function(){
         "autoWidth":false,
         "destroy": true,
         //stateSave: true,
-        "columnDefs": [
-            { "visible": false, "targets": 0 }
-        ],
         "info": false,
         "sort":true,
         "pagingType": "full_numbers",

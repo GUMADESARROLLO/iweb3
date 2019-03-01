@@ -492,10 +492,7 @@ $(document).ready(function(){
                 "data": data.data,
                 "columns": data.columns,
                 "info": true,
-                "sort":true,
-                "order": [
-                    [0, "asc"]
-                ],
+                "sort":false,
                 "pagingType": "full_numbers",
                 "lengthMenu": [
                     [5,10,100, -1],
