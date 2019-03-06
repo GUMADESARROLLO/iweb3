@@ -73,7 +73,13 @@ class Main_model extends CI_Model
 
     public function getBodegas($ID)
     {
-        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_bodegas WHERE ARTICULO = '$ID'", SQLSRV_FETCH_ASSOC);
+        if($this->session->userdata('RolUser')=='2'){
+            $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_bodegas WHERE ARTICULO = '$ID' and BODEGA IN ('002','005','006')", SQLSRV_FETCH_ASSOC);
+        }else{
+            $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_bodegas WHERE ARTICULO = '$ID'", SQLSRV_FETCH_ASSOC);
+        }
+        
+
         $i = 0;
         $json = array();
         foreach ($query as $fila) {
@@ -143,16 +149,19 @@ class Main_model extends CI_Model
 
     public function getPrecios($ID)
     {
-        $query = $this->sqlsrv->fetchArray("EXEC sp_iweb_precios '$ID'", SQLSRV_FETCH_ASSOC);
+        
+
+        if($this->session->userdata('RolUser')=='2'){
+            $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_precio WHERE ARTICULO = '$ID' and NIVEL_PRECIO IN ('FARMACIA','PUBLICO')", SQLSRV_FETCH_ASSOC);
+        }else{
+            $query = $this->sqlsrv->fetchArray("EXEC sp_iweb_precios '$ID'", SQLSRV_FETCH_ASSOC);
+        }
+        
         $i = 0;
         $json = array();
         foreach ($query as $fila) {
             $json["data"][$i]["NIVEL_PRECIO"] = $fila["NIVEL_PRECIO"];
-
-
-
-            $json["data"][$i]["PRECIO"] = ($fila["PRECIO"]=="") ? "N/D" : number_format($fila["PRECIO"],2);
-
+            $json["data"][$i]["PRECIO"] = ($fila["PRECIO"]=="") ? "N/D" : number_format($fila["PRECIO"],2);            
             $i++;
         }
 
@@ -169,18 +178,17 @@ class Main_model extends CI_Model
     {
         $query = $this->sqlsrv->fetchArray("SELECT REGLAS FROM GMV_mstr_articulos WHERE ARTICULO = '$ID'", SQLSRV_FETCH_ASSOC);
         $i = 0;
-        $json = array();
-       
-       
+        $json = array();       
         foreach ($query as $fila) {
             $porciones = explode(",", $fila["REGLAS"]);
-
             for($n=0;$n<count($porciones);$n++){
+                $Position_elementos = substr($porciones[$n], 0, strpos ($porciones[$n] , "+" ));
                 $json["data"][$i]["REGLAS"] = $porciones[$n];
                 $i++;
             }
            
         }
+
 
         $json["columns"][0]["data"] = "REGLAS";
         $json["columns"][0]["name"] = "REGLAS";
