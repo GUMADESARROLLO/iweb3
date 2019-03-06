@@ -1610,3 +1610,11 @@ select.swal2-select{
 .hide_transaccion{
     display: none;
 }
+
+.sidenav > li > a {
+    color: #e0e0e0!important;
+}
+
+.sidenav > li > a > i {
+    color: #e0e0e0!important;
+}

@@ -1,4 +1,4 @@
-<header class="demo-header mdl-layout__header ">
+<!--<header class="demo-header mdl-layout__header ">
     <div class="row" >
         <div class="col s4" >
             <br><a href="Main"><i class="material-icons blue-text">menu</i></a>
@@ -9,6 +9,12 @@
         <div class="col s4" >
             <br>
         </div>
+    </div>
+</header>-->
+<header class="demo-header mdl-layout__header ">
+    <div class="centrado  ColorHeader">
+        <span class=" title">Reserva</span>
+        <a href="#!" style="float: left; margin-left: 1rem; color: white" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
 </header>
 <br>

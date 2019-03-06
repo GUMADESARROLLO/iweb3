@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
     $('#tblCatalogos').DataTable( {
-        "ajax": "ajax_Catalogos" ,
+        "ajax": "ajax_Catalogos",
         responsive:true,
         "autoWidth":false,
         "destroy": true,
@@ -25,7 +25,7 @@ $(document).ready(function(){
         "info": false,
         "sort":true,
         "pagingType": "full_numbers",
-
+        
         "language": {
             "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
             "infoEmpty": "Registro 0 a 0 de 0 entradas",
@@ -43,7 +43,9 @@ $(document).ready(function(){
             }
         },
         "columns": [
-            { "data": "Articulo" }
+            { "data": "Articulo1" },
+            { "data": "Articulo2" },
+            { "data": "Articulo3" },
         ],
         initComplete: function () {
             this.api().columns([0]).every( function () {
@@ -51,9 +53,11 @@ $(document).ready(function(){
             } );
 
             $("#tblCatalogos_length").hide();
-            $(".sorting_asc").hide()
+            
         }
     } );
+    $(".sorting").hide()
+    $(".sorting_asc").hide()
 });
 
 

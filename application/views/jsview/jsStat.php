@@ -39,7 +39,7 @@ $(document).ready(function(){
             "emptyTable": "NO HAY DATOS DISPONIBLES",
             "lengthMenu": '_MENU_ ',
             "search": '<i class=" material-icons">search</i>',
-            "loadingRecords": " ",
+            "loadingRecords": "Cargando...",
             "paginate": {
                 "first": "Primera",
                 "last": "Última ",

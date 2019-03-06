@@ -22,9 +22,10 @@
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/js/extensions/dataTables.colVis.min.js"></script>
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/js/extensions/dataTables.tableTools.min.js"></script>
 
-<script src="<?PHP echo base_url();?>assets/js/JS.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/material.min.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/materialize-v1-0-0.min.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/materialize.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/JS.js"></script>
 
 <script src="<?PHP echo base_url(); ?>assets/js/sweetalert2.min.js"></script>
 

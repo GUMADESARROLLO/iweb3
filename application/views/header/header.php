@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,8 @@
     <meta name="msapplication-TileColor" content="#3372DF">
 
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/materialize.css">
+    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/materialize-v1-0-0.min.css">
+    
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/media/icon.css">
 
