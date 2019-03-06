@@ -1,6 +1,5 @@
 <?php $name = $this->session->userdata('UserN');?>
-
-<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<!--<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <img style="margin-top: 50px;" width="100%" src="<?PHP echo base_url();?>assets/img/logoUMK.png"  >
         <header id="MenuFondo" class="demo-drawer-header">
@@ -33,9 +32,32 @@
                <a href="#" > <li href="#" id="Salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
           </ul>
        </div>
-    </div>
+    </div>-->
 
-               <!-- Modal ChangePassword Structure -->
+  <!--NUEVO MENU LATERAL-->
+  <ul id="slide-out" class="sidenav" style="background: #003040; color: white">
+    <li><div class="user-view">      
+      <img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png">
+      <span><strong><?php echo $name?></strong></span>
+      <a style="color:#fff9c4; float: right;" href="#" id="Salir">Cerrar sesión</a>
+    </div></li>
+      <?php
+      if ($List_menus!=0){
+          foreach ($List_menus as $Keys){
+              if ($Keys['modules_id']=="Stat-"){
+                  echo '<li><a href="Stat">Estadisticas de ventas</a></li>';
+              }else{
+                  echo '<li><a href="'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i>'.$Keys['Full_name'].'</a></li>';
+              }
+          }
+      }else{
+          echo '<li><a href="!#"><li href="!#"><i class="material-icons">error_outline</i> Error 403</li></a>';
+      }?>
+      <li><a href="#" onclick="modalPass()"><i class="material-icons">lock</i> Cambiar Contraseña</a></li>
+      
+  </ul>
+
+  <!-- Modal ChangePassword Structure -->
   <div id="modalPassword" class="modal">
     <div class="modal-content">
       <h4 class="center indigo-text darken-4">CAMBIAR CONTRASEÑA</h4>

@@ -12,7 +12,7 @@ class Catalogo_model extends CI_Model
     {
 
         $id_CatalogoActivo = 0;
-        $i = 0;
+        $i = 0; $c = 1;
         $json = array();
 
 
@@ -25,7 +25,7 @@ class Catalogo_model extends CI_Model
             $Query_Get_Catalogos = $this->db->query("SELECT * FROM visys.detallect WHERE IdCt='".$id_CatalogoActivo."'");
 
 
-
+            $tempo = $Query_Get_Catalogos->result_array();
 
             if ($Query_Get_Catalogos->num_rows()>0) {
                 foreach ($Query_Get_Catalogos->result_array() as $fila) {
@@ -36,20 +36,41 @@ class Catalogo_model extends CI_Model
                         $url_img_catalo = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http")."://".$_SERVER['HTTP_HOST']."/visys2/assets/img/catalogo/00001.jpg";
                     }*/
 
-                    $json["data"][$i]["Articulo"]            = '<div class="row valign-wrapper" style="border-bottom: 1px solid #ccc!important;">
-                                                                    <div class="col s2">
-                                                                        <div class="card-panel ">
-                                                                        <img src="'.$url_img_catalo.'" alt="" class="circle responsive-img"></div>
-                                                                    </div>
-                                                                    
-                                                                    <div class="col s10">
-                                                                        <h5><span class="black-text left">'.$fila["Nombre"].'</span></h5><br>
-                                                                        <h6><span class="left">Cod. '.$fila["IdIMG"].'</span></h6>
-                                                                        <br><br>
-                                                                        <span class="left"><h4>'.number_format($fila["Puntos"],0).' pts.</h4></span>
-                                                                    </div>
-                                                                </div>';
-                    $i++;
+                    if ( $c<=3 ) {
+                        if ($fila===end( $tempo )) {
+                            switch ($c) {
+                                case 1:
+                                    $json['data'][$i]['Articulo2'] = "";
+                                    $json['data'][$i]['Articulo3'] = "";
+                                    break;
+                                case 2:
+                                    $json['data'][$i]['Articulo3'] = "";
+                                    break;
+
+                                case 3:
+
+                                    break;
+                            }
+                        }                        
+                    }elseif ( $c==4 ) {
+                        $i++;
+                        $c=1;
+                    }
+
+                    $NM = 'Articulo'.$c;
+                    $json['data'][$i][$NM] = '<div class="row" style="border-bottom: 1px solid #ccc!important; height:200px; width:350px!important">
+                                                <div class="col s7" style="height:100%!important;">
+                                                    <img src="'.$url_img_catalo.'" style="width:100%!important; height:97%">
+                                                </div>                                                
+                                                <div class="col s5">
+                                                    <p><span class="left" style="color:#1976d2; font-weight: bold">'.$fila["Nombre"].'</span></p><br>
+                                                    <h6><span class="left">Cod. '.$fila["IdIMG"].'</span></h6>
+                                                    <br><br>
+                                                    <span class="left" style="color:#ff5722; font-weight: bold">'.number_format($fila["Puntos"],0).' pts.</span>
+                                                </div>
+                                            </div>';
+                    $c++;
+                    
                 }
             }
         }

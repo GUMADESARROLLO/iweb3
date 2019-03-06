@@ -1,8 +1,48 @@
 <header class="demo-header mdl-layout__header ">
-    <div class="centrado  ColorHeader"><span class=" title">UNIMARK S.A - SUPLIENDO SALUD</span></div>
+    <div class="centrado  ColorHeader">
+        <span class=" title">Diponible Bodega 002</span>
+        <a href="#!" style="float: left; margin-left: 1rem; color: white" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
 </header>
 
-<main class="mdl-layout__content mdl-color--grey-100">
+<div class="container" style="width: 100%!important;">
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s12 m10">
+                    <input type="text" id="searchCatalogo">
+                </div>
+                <div class="col s12 m2">
+                    <select class="browser-default" id="frm_lab_row">
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="-1">Todas las filas...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    <table class="table striped RobotoR" id="tblArticulos">
+                        <thead>
+                        <tr>
+                            <th>LABORATORIO</th>
+                            <th>ARTICULO</th>
+                            <th>DESCRIPCION</th>
+                            <th>CANTIDAD DISPONIBLE</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid demo-content">
         <div class="row TextColor center">Diponible Bodega 002.</div>
         <div class="row" style="width:100%">
@@ -14,40 +54,23 @@
                             <div class="col s10 m11">
                                 <br>
                                 <input type="checkbox" />
-                                <input type="text" id="searchCatalogo">
+                                
                             </div>
 
                             <div class="col s1 m1" style="margin-top: 10px">
-                                <select class="browser-default" id="frm_lab_row">
-                                    <option value="10">10</option>
-                                    <option value="100">100</option>
-                                    <option value="-1">Todas las filas...</option>
-                                </select>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         <div class="row center">
-            <table class="table striped RobotoR" id="tblArticulos">
-                <thead>
-                <tr>
-                    <th>LABORATORIO</th>
-                    <th>ARTICULO</th>
-                    <th>DESCRIPCION</th>
-                    <th>CANTIDAD DISPONIBLE</th>
-                </tr>
-                </thead>
 
-                <tbody>
-
-                </tbody>
-            </table>
 
         </div>
   </div>
 </div>
-</main>
+</main>-->
 <!-- Modal Structure -->
 <div id="mdlIngresos" class="modal">
     <div class="modal-content">

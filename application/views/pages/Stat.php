@@ -1,65 +1,56 @@
 <header class="demo-header mdl-layout__header ">
-    <div class="centrado  ColorHeader"><span class=" title">UNIMARK S.A - SUPLIENDO SALUD</span></div>
+    <div class="centrado  ColorHeader">
+        <span class=" title">Estadisticas de ventas</span>
+        <a href="#!" style="float: left; margin-left: 1rem; color: white" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
 </header>
 
-<main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-grid demo-content">
-        <span class="flow-text TextColor Centrado">información de ventas.</span>
-
-
-
-
-        <div class="row" style="width:100%">
+<div class="container" style="width: 100%!important;">
+    <div class="card">
+        <div class="card-content">
             <div class="row">
-                <div class="col s12 m12">
-                    <div class="card hoverable horizontal">
-                        <div class="row" style="margin-top: 20px">
-                            <div class="col s10 m10">
-                                <br>
-                                <input type="text" id="searchCatalogo">
-                            </div>
-
-                            <div class="col s1 m1" style="margin-top: 10px">
-                                <select class="browser-default" id="frm_lab_row">
-                                    <option value="10">10</option>
-                                    <option value="100">100</option>
-                                    <option value="-1">Todas las filas...</option>
-                                </select>
-                            </div>
-                            <div class="col s1 m1" style="margin-top: 10px">
-                                <select class="browser-default" id="frm_anno">
-                                    <option value="-1">...</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col s12 m8">
+                    <input type="text" id="searchCatalogo">
+                </div>
+                <div class="col s12 m2" style="margin-top: 10px">
+                    <select class="browser-default" id="frm_lab_row">
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="-1">Todas las filas...</option>
+                    </select>
+                </div>
+                <div class="col s12 m2" style="margin-top: 10px">
+                    <select class="browser-default" id="frm_anno">
+                        <option value="-1">...</option>
+                    </select>
                 </div>
             </div>
-        <div class="row center">
-            <table class="table striped RobotoR" id="tblArticulos">
-                <thead>
-                <tr>
-                    <th>BODEGA</th>
-                    <th>LABORATORIO</th>
-                    <th>ARTICULO</th>
-                    <th>DESCRIPCION</th>
-                    <th>AÑO</th>
-                    <th>TOTAL ART VENDIDO</th>
-                    <th>UNIDAD VENDIDA ANUAL</th>
-                    <th>TOTAL VENTA ANUAL</th>
-                    <th>PROMEDIO VENTA ANUAL</th>
-                </tr>
-                </thead>
+            <div class="row">
+                <div class="col s12 m12">
+                    <table class="table striped RobotoR" id="tblArticulos">
+                        <thead>
+                        <tr>
+                            <th>BODEGA</th>
+                            <th>LABORATORIO</th>
+                            <th>ARTICULO</th>
+                            <th>DESCRIPCION</th>
+                            <th>AÑO</th>
+                            <th>TOTAL ART VENDIDO</th>
+                            <th>UNIDAD VENDIDA ANUAL</th>
+                            <th>TOTAL VENTA ANUAL</th>
+                            <th>PROMEDIO VENTA ANUAL</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                <tbody>
-
-                </tbody>
-            </table>
-
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-  </div>
+    </div>
 </div>
-</main>
+
 <!-- Modal Structure -->
 <div id="mdlIngresos" class="modal">
     <div class="modal-content">

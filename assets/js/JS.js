@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('.sidenav').sidenav();
     $(function() {
         var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
 
@@ -16,6 +17,9 @@ $(document).ready(function() {
         showMonthsShort: undefined,showWeekdaysFull: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],today: 'Hoy',
         clear: 'BORRAR',close: 'CERRAR' });
 } );//Fin Document ready
+
+
+
 
 
 
