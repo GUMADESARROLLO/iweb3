@@ -21,7 +21,10 @@
     <div class="card-content">
       <div class="row">
         <div class="col s12 m8">
-          <input type="text" id="searchCatalogo" placeholder="Buscar clientes">
+          <div class="input-group" style="margin-top: 0px!important">
+            <span class="input-group-addon"><i class="small material-icons">search</i></span>
+            <input type="text" id="searchCatalogo" placeholder="Buscar clientes">
+          </div>          
         </div>
         <div class="col s12 m4">
           <select class="browser-default" id="frm_lab_row">
@@ -105,31 +108,24 @@
 </main>-->
 
  <!-- Modal ARTICULOS Structure -->
-      <div id="modalArtic" class="modal">
-          <div class="modal-content">
-              <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
-              <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
-              <div class="row" >
-                  <div class="col s6 ">
-                      <h5 class="center indigo-text darken-4" id="h6Articulo">CLIENTE: <span id="modalIdArticulo"></span></h5>
-                  </div>
-                  <div class="col s6 ">
-                    <h5 class="center indigo-text darken-4" id="h6Articulo">Pts: <span id="tTotalPuntos"></span></h5>
-                  </div>
-              </div>
-              <br>
-              <table class="table striped RobotoR" id="tbl_trasn">
-                  <thead>
-                  <tr>
-                      <th >CODIGO</th>
-                      <th>FECHA</th>
-                      <th>PUNTOS DISP.</th>
-                  </tr>
-                  </thead>
-                  <tbody class="Centrado">
+    <div id="modalArtic" class="modal">
+      <div class="modal-content">
+        <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
+        <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
+        <p class="center indigo-text darken-4" id="h6Articulo">ID CLIENTE: <span id="modalIdArticulo"></span> - PUNTOS: <span id="tTotalPuntos"></span></p>
+        <table class="table striped RobotoR" id="tbl_trasn">
+          <thead>
+            <tr>
+              <th >CODIGO</th>
+              <th>FECHA</th>
+              <th>PUNTOS DISP.</th>
+            </tr>
+          </thead>
+          <tbody class="Centrado">
 
-                  </tbody>
-              </table>
+          </tbody>
+        </table>
+      </div>
     </div>
     <!-- <div class="modal-footer">
     </div> -->

@@ -10,7 +10,10 @@
         <div class="card-content">
             <div class="row">
                 <div class="col s12 m8">
-                    <input type="text" id="searchCatalogo">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="small material-icons">search</i></span>
+                      <input type="text" id="searchCatalogo">
+                    </div>                    
                 </div>
                 <div class="col s12 m2" style="margin-top: 10px">
                     <select class="browser-default" id="frm_lab_row">

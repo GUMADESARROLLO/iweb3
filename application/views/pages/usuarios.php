@@ -10,7 +10,11 @@
     <div class="card-content">
       <div class="row">
         <div class="col s12 m10">
-          <input  id="searchUsuarios" type="text" placeholder="Buscar usuario" class="validate mayuscula">
+          <div class="input-group" style="margin-top: 0px!important">
+            <span class="input-group-addon"><i class="small material-icons">search</i></span>
+            <input  id="searchUsuarios" type="text" placeholder="Buscar usuario" class="validate mayuscula">
+          </div>  
+          
         </div>
         <div class="col s12 m2">
           <a href="#" onclick="ModalUser()" class="btn waves-effect waves-light blue right">Nuevo</a>

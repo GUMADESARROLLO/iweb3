@@ -10,7 +10,10 @@
         <div class="card-content">
             <div class="row">
                 <div class="col s12 m6">
-                    <input type="text" id="searchCatalogo">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="small material-icons">search</i></span>
+                      <input type="text" id="searchCatalogo">
+                    </div>                    
                 </div>
                 <div class="col s12 m5" style="margin-top: 10px">
                     <select class="browser-default" id="frm_Item_row">
@@ -134,7 +137,41 @@
         </div>
     </div>
 </div>
-        <div class="card hoverable " ><br>
+
+        <div class="card">
+            <div class="card-content">
+                <div class="row">                    
+                    <div class="col s12 m3">
+                        <input type="text" id="dtn1" class="datepicker" placeholder="00-00-0000">
+                    </div>
+                    <div class="col s12 m3">
+                        <input type="text" id="dtn2" class="datepicker" placeholder="00-00-0000">
+                    </div>
+                    <div class="col s12 m1" style="margin-top: 15px; cursor: pointer;">
+                        <i id="btnSearch" class="Medium material-icons">search</i>
+                    </div>
+                    <div class="col s12 m4" style="margin-top: 15px">
+                        <div id="dropTipo">
+                            <select class="browser-default" id="sltTipo">
+                                <option value="Físico">Físico</option>
+                                <option value="Costo">Costo</option>
+                                <option value="Compra">Compra</option>
+                                <option value="Aprobación">Aprobación</option>
+                                <option value="Traspaso">Traspaso</option>
+                                <option value="Venta">Venta</option>
+                                <option value="Reservación">Reservación</option>
+                                <option value="Consumo">Consumo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col s12 m1" style="margin-top: 7px">
+                        <div class="right" id="dropCount"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="card hoverable " ><br>
             <div class="row">
                 <form class="col s12">
                     <div class="row">
@@ -167,7 +204,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
 
        <div id="trasn"></div>
         <table id="tbl_trasn" class="display RobotoR" cellspacing="0" width="100%">

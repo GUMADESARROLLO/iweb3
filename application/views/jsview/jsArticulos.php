@@ -195,7 +195,6 @@ $(document).ready(function(){
 }
 
     $("#btnSearch").click(function() {
-
         var d1 = $("#dtn1").val();
         var d2 = $("#dtn2").val();
         var at = $("#modalIdArticulo").html();

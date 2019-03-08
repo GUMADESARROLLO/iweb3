@@ -55,6 +55,9 @@ $('#tblArticulos').DataTable( {
             "previous": "Anterior"
         }
     },
+    "columnDefs": [
+        { "width": "50%", "targets": [ 1 ] }
+    ],
     initComplete: function () {
         this.api().columns([15]).every( function () {
             var column = this;
