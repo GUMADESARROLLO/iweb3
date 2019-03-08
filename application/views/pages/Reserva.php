@@ -19,91 +19,93 @@
 </header>
 <br>
 <div class="left" id="lstEstados"></div>
-<div class="mdl-grid demo-content">
-    <div class="row" >
-        <div class="card hoverable horizontal">
-            <div class="row" style="margin-top: 20px">
-                <div class="col s9 m7">
-                    <i class="material-icons prefix">search</i>
-                    <input type="text" id="searchCatalogo" class="validate mayuscula">
+
+<div class="container" style="width: 100%!important;">
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s12 m8">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="small material-icons">search</i></span>
+                      <input type="text" id="searchCatalogo" class="validate mayuscula">
+                    </div>                    
                 </div>
-                <div class="col s1 m2" style="margin-top: 10px">
+                <div class="col s12 m2" style="margin-top: 10px">
                     <select class="browser-default" id="frm_lab_menu">
                         <option value="">ESTADOS...</option>
                     </select>
                 </div>
-                <div class="col s1 m2" style="margin-top: 10px">
+                <div class="col s12 m1" style="margin-top: 10px">
                     <select class="browser-default" id="frm_lab_row">
                         <option value="10">10</option>
                         <option value="100">100</option>
                         <option value="-1">Todas las filas...</option>
                     </select>
                 </div>
-                <div class="col s1 m1 center" style="margin-top: 10px">
-                    <a id="mdlDetalles"  href="#"><i class="material-icons">info</i></a>
+                <div class="col s12 m1">
+                  <a id="mdlDetalles"  href="#"><i class="material-icons" style="margin-top: 20px">info</i></a>
                 </div>
-
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <table class="table striped" id="tblArticulos">
-                <thead>
-                <tr>
-                    <th> ARTICULO</th>
-                    <th> DESCRIPCIÓN</th>
-                    <th> CANTIDAD DISPONIBLE</th>
-                    <th> CANTIDAD EN RESERVA</th>
-                    <th> RESERVAR S/N</th>
-                    <th> TOTAL A RESERVAR</th>
-                    <th> TOTAL AÑO</th>
-                    <th> PROM MENSUAL 3</th>
-                    <th> PROM MENSUAL 6</th>
-                    <th> CONSUMO MINIMO DIARIO</th>
-                    <th> CONSUMO MAXIMO DIARIO</th>
-                    <th> CANTIDAD A PEDIR</th>
-                    <th> EXISTENCIAS MINIMAS</th>
-                    <th> EXISTENCIAS MAXIMAS</th>
-                    <th> PUNTO DE REORDEN</th>
-                    <th style="display: none"></th>
-                </tr>
-                </thead>
+            <div class="row" style="width:100%">
+                <div STYLE="margin-right: 10px;" class="right m12" id="lstProveedores"></div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                  <table class="table" id="tblArticulos">
+                    <thead>
+                      <tr>
+                        <th> ARTICULO</th>
+                        <th> DESCRIPCIÓN</th>
+                        <th> CANTIDAD DISPONIBLE</th>
+                        <th> CANTIDAD EN RESERVA</th>
+                        <th> RESERVAR S/N</th>
+                        <th> TOTAL A RESERVAR</th>
+                        <th> TOTAL AÑO</th>
+                        <th> PROM MENSUAL 3</th>
+                        <th> PROM MENSUAL 6</th>
+                        <th> CONSUMO MINIMO DIARIO</th>
+                        <th> CONSUMO MAXIMO DIARIO</th>
+                        <th> CANTIDAD A PEDIR</th>
+                        <th> EXISTENCIAS MINIMAS</th>
+                        <th> EXISTENCIAS MAXIMAS</th>
+                        <th> PUNTO DE REORDEN</th>
+                        <th style="display: none"></th>
+                      </tr>
+                    </thead>
 
-                <tfoot style="display: none">
-                <tr>
-                    <th> ARTICULO</th>
-                    <th> DESCRIPCIÓN</th>
-                    <th> CANTIDAD DISPONIBLE</th>
-                    <th> CANTIDAD EN RESERVA</th>
-                    <th> RESERVAR S/N</th>
-                    <th> TOTAL A RESERVAR</th>
-                    <th> TOTAL AÑO</th>
-                    <th> PROM MENSUAL 3</th>
-                    <th> PROM MENSUAL 6</th>
-                    <th> CONSUMO MINIMO DIARIO</th>
-                    <th> CONSUMO MAXIMO DIARIO</th>
-                    <th> CANTIDAD A PEDIR</th>
-                    <th> EXISTENCIAS MINIMAS</th>
-                    <th> EXISTENCIAS MAXIMAS</th>
-                    <th> PUNTO DE REORDEN</th>
-                    <th></th>
-                </tr>
-                </tfoot>
-
-                <tbody>
-                <?php
-         if(!$Articulos){
-         }
-         else{
-             foreach($Articulos["data"] as $key){
-
-
-                 $SN = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "S" : "N" ;
-                 $COLOR = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "#FF9595" : "#05539E" ;
-                 echo "
-                     <tr style='background-color: ".$COLOR."'>
-                         <td>".$key["ARTICULO"]."</td>
-                         <td style='text-align: center'>".$key['desc']."</td>
+                    <tfoot style="display: none">
+                      <tr>
+                        <th> ARTICULO</th>
+                        <th> DESCRIPCIÓN</th>
+                        <th> CANTIDAD DISPONIBLE</th>
+                        <th> CANTIDAD EN RESERVA</th>
+                        <th> RESERVAR S/N</th>
+                        <th> TOTAL A RESERVAR</th>
+                        <th> TOTAL AÑO</th>
+                        <th> PROM MENSUAL 3</th>
+                        <th> PROM MENSUAL 6</th>
+                        <th> CONSUMO MINIMO DIARIO</th>
+                        <th> CONSUMO MAXIMO DIARIO</th>
+                        <th> CANTIDAD A PEDIR</th>
+                        <th> EXISTENCIAS MINIMAS</th>
+                        <th> EXISTENCIAS MAXIMAS</th>
+                        <th> PUNTO DE REORDEN</th>
+                        <th></th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                    <?php
+                      if(!$Articulos){
+                      
+                      }
+                      else{
+                        foreach($Articulos["data"] as $key){
+                          $SN = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "S" : "N" ;
+                          $COLOR = ($key['EXISTENCIAS']<=$key['CERCA_MIN']) ? "#FF9595" : "#05539E" ;
+                          echo "
+                           <tr style='background-color: ".$COLOR."'>
+                              <td>".$key["ARTICULO"]."</td>
+                              <td style='text-align: center'>".$key['desc']."</td>
                               <td style='text-align: center'>".$key['EXISTENCIAS']."</td>
                               <td style='text-align: center'>".$key['CANT_RESER']."</td>
                               <td style='text-align: center'>".$SN."</td>
@@ -117,58 +119,84 @@
                               <td style='text-align: center'>".$key['EXIST_MIN']."</td>
                               <td style='text-align: center'>".$key['EXIST_MAX']."</td>
                               <td style='text-align: center'>".$key['PUNTO_REORDEN']."</td>
-
                               <td style='display: none'>".((($key['EXISTENCIAS']!=0)) ? 'Sin Reserva' : "En Reserva")."</td>
-                     </tr>";
-
-
-             }
-         }
-        ?>
-                </tbody>
-            </table>
+                           </tr>";
+                        }
+                      }?>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div id="ModalDetalles" class="modal">
-<div class="modal-content">
-    <table id="tblAlvaro" style="font-size:11px;">
-        <thead>
-        <tr style="background-color:#253778; color:white;">
-            <th style="text-align: center"> ARTICULO</th>
-            <th style="text-align: center"> DESCRIPCIÓN</th>
-            <th style="text-align: center"> CANTIDAD DISPONIBLE</th>
-            <th style="text-align: center"> CANTIDAD EN RESERVA</th>
-            <th style="text-align: center"> RESERVAR S/N</th>
-            <th style="text-align: center"> TOTAL A RESERVAR</th>
-            <th style="text-align: center"> TOTAL AÑO</th>
-            <th style="text-align: center"> CONSUMO MINIMO DIARIO</th>
-            <th style="text-align: center"> CONSUMO MAXIMO DIARIO</th>
-            <th style="text-align: center"> CANTIDAD A PEDIR</th>
-            <th style="text-align: center"> EXISTENCIAS MINIMAS</th>
-            <th style="text-align: center"> EXISTENCIAS MAXIMAS</th>
-            <th style="text-align: center"> PUNTO DE REORDEN</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="text-transform: uppercase; font-weight:bold;">
-            <td>CODIGO DEL ARTICULO</td>
-            <td>DESCRIPCION DEL ARTICULO</td>
-            <td>Existencia en Bodegas</td>
-            <td>lo que ese encuentra en reserva actualmente</td>
-            <td>si esta disponible para reserva</td>
-            <td>lo que se debe reservar</td>
-            <td></td>
-            <td>margen llamado de seguridad</td>
-            <td>garantiza que siempre hayan existencia de pedidos</td>
-            <td>cantidad que se debe de pedidr para mantener en existencia</td>
-            <td>Em=Cm*Tr, Consumo Minimo por el tiempo de reposicion</td>
-            <td>EM=CM*Tr+Em, Existencia Maxima= Consumo Minimo * Tiempor de reposicion +Existencia Minimas</td>
 
-        </tr>
-        </tbody>
-    </table>
-</div>
+<!--<div class="mdl-grid demo-content">
+    <div class="row" >
+        <div class="card hoverable horizontal">
+            <div class="row" style="margin-top: 20px">
+                <div class="col s9 m7">
+                    <i class="material-icons prefix">search</i>
+                    
+                </div>
+                <div class="col s1 m2" style="margin-top: 10px">
+
+                </div>
+                <div class="col s1 m2" style="margin-top: 10px">
+
+                </div>
+                <div class="col s1 m1 center" style="margin-top: 10px">
+                    <a id="mdlDetalles"  href="#"><i class="material-icons">info</i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>-->
+
+<div id="ModalDetalles" class="modal" style="height: 200px">
+  <div class="modal-content">
+      <table id="tblAlvaro" style="font-size:11px;">
+          <thead>
+          <tr style="background-color:#253778; color:white;">
+              <th style="text-align: center"> ARTICULO</th>
+              <th style="text-align: center"> DESCRIPCIÓN</th>
+              <th style="text-align: center"> CANTIDAD DISPONIBLE</th>
+              <th style="text-align: center"> CANTIDAD EN RESERVA</th>
+              <th style="text-align: center"> RESERVAR S/N</th>
+              <th style="text-align: center"> TOTAL A RESERVAR</th>
+              <th style="text-align: center"> TOTAL AÑO</th>
+              <th style="text-align: center"> CONSUMO MINIMO DIARIO</th>
+              <th style="text-align: center"> CONSUMO MAXIMO DIARIO</th>
+              <th style="text-align: center"> CANTIDAD A PEDIR</th>
+              <th style="text-align: center"> EXISTENCIAS MINIMAS</th>
+              <th style="text-align: center"> EXISTENCIAS MAXIMAS</th>
+              <th style="text-align: center"> PUNTO DE REORDEN</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr style="text-transform: uppercase; font-weight:bold;">
+              <td>CODIGO DEL ARTICULO</td>
+              <td>DESCRIPCION DEL ARTICULO</td>
+              <td>Existencia en Bodegas</td>
+              <td>lo que ese encuentra en reserva actualmente</td>
+              <td>si esta disponible para reserva</td>
+              <td>lo que se debe reservar</td>
+              <td></td>
+              <td>margen llamado de seguridad</td>
+              <td>garantiza que siempre hayan existencia de pedidos</td>
+              <td>cantidad que se debe de pedidr para mantener en existencia</td>
+              <td>Em=Cm*Tr, Consumo Minimo por el tiempo de reposicion</td>
+              <td>EM=CM*Tr+Em, Existencia Maxima= Consumo Minimo * Tiempor de reposicion +Existencia Minimas</td>
+              <td></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
 </div>
  <!-- Modal ARTICULOS Structure -->
   <div id="modalArtic" class="modal">

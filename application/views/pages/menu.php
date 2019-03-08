@@ -36,11 +36,21 @@
 
   <!--NUEVO MENU LATERAL-->
   <ul id="slide-out" class="sidenav" style="background: #003040; color: white">
-    <li><div class="user-view">      
-      <img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png">
-      <span><strong><?php echo $name?></strong></span>
-      <a style="color:#fff9c4; float: right;" href="#" id="Salir">Cerrar sesión</a>
-    </div></li>
+      <li>
+        <div class="user-view">      
+          <img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png">
+          <span><strong><?php echo $name?></strong></span>
+
+          <div class="tooltip top" style="float: right!important; margin-top: 3px">
+            <a href="#!" id="Salir"><i class="material-icons">exit_to_app</i></a>
+            <span class="tiptext">Cerrar sesión</span>
+          </div>
+          <div class="tooltip top" style="float: right!important; margin-top: 3px; margin-right: 20px">
+            <a href="#!" onclick="modalPass()" id="Salir"><i class="material-icons">lock</i></a>
+            <span class="tiptext">Cambiar pass</span>
+          </div>
+        </div>
+      </li>
       <?php
       if ($List_menus!=0){
           foreach ($List_menus as $Keys){
@@ -52,9 +62,7 @@
           }
       }else{
           echo '<li><a href="!#"><li href="!#"><i class="material-icons">error_outline</i> Error 403</li></a>';
-      }?>
-      <li><a href="#" onclick="modalPass()"><i class="material-icons">lock</i> Cambiar Contraseña</a></li>
-      
+      }?>      
   </ul>
 
   <!-- Modal ChangePassword Structure -->
