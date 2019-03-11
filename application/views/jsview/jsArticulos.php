@@ -491,7 +491,17 @@ $(document).ready(function(){
                 "data": data.data,
                 "columns": data.columns,
                 "info": true,
-                "sort":false,
+                "sort":true,
+                "order": [
+                    [0, "asc"]
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ],
                 "pagingType": "full_numbers",
                 "lengthMenu": [
                     [5,10,100, -1],

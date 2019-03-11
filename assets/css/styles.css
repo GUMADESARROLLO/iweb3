@@ -1712,3 +1712,7 @@ select.swal2-select{
     left: 50%;
     border-color: #2E2E2E transparent transparent transparent;
 }
+
+.cls_body{
+    background-color: #EDF0F5;
+}

@@ -72,4 +72,4 @@
     </style>
 
 </head>
-<body>
+<body class="cls_body">

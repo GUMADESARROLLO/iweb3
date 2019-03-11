@@ -183,15 +183,19 @@ class Main_model extends CI_Model
             $porciones = explode(",", $fila["REGLAS"]);
             for($n=0;$n<count($porciones);$n++){
                 $Position_elementos = substr($porciones[$n], 0, strpos ($porciones[$n] , "+" ));
+                $json["data"][$i]["ORDEN"] = $Position_elementos;
                 $json["data"][$i]["REGLAS"] = $porciones[$n];
                 $i++;
             }
            
         }
 
+        $json["columns"][0]["data"] = "ORDEN";
+        $json["columns"][0]["name"] = "ORDEN";
 
-        $json["columns"][0]["data"] = "REGLAS";
-        $json["columns"][0]["name"] = "REGLAS";
+
+        $json["columns"][1]["data"] = "REGLAS";
+        $json["columns"][1]["name"] = "REGLAS";
 
 
 
