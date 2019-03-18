@@ -149,6 +149,15 @@ $(document).ready(function(){
 
 
     }
+
+
+    $("#id_prn_report").on("click",function () {
+        var id_print = $("#modalIdArticulo").html();
+        console.log(id_print);
+        var url = getRootUrl()+ '/iweb3/index.php/prnt_report_punto_cliente/'+id_print;
+        window.open(url);
+    });
+
 $("#btn_updte_existe").on("click",function () {
     swal({
             title: 'Actualizano existencias',
@@ -181,4 +190,14 @@ $("#btn_updte_existe").on("click",function () {
         }
     });
 });
+
+
+function getRootUrl() {
+    var defaultPorts = {"http:":80,"https:":443};
+    return window.location.protocol + "//" + window.location.hostname
+        + (((window.location.port)
+        && (window.location.port != defaultPorts[window.location.protocol]))
+            ? (":"+window.location.port) : "");
+}
+
 </script>

@@ -110,13 +110,13 @@
  <!-- Modal ARTICULOS Structure -->
     <div id="modalArtic" class="modal">
       <div class="modal-content">
-        <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
+        <a id="id_prn_report" class=" right" ><i class="material-icons blue-text">print</i></a>
         <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
         <p class="center indigo-text darken-4" id="h6Articulo">ID CLIENTE: <span id="modalIdArticulo"></span> - PUNTOS: <span id="tTotalPuntos"></span></p>
         <table class="table striped RobotoR" id="tbl_trasn">
           <thead>
             <tr>
-              <th >CODIGO</th>
+              <th>CODIGO</th>
               <th>FECHA</th>
               <th>PUNTOS DISP.</th>
             </tr>

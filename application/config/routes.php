@@ -62,3 +62,4 @@ $route['ajax_Catalogos'] = 'Main_controller/ajax_Catalogos';
 $route['Disp_Clientes'] = 'Main_controller/Disp_Clientes';
 $route['ajax_Disp_Clientes'] = 'Main_controller/ajax_Disp_Clientes';
 
+$route['prnt_report_punto_cliente/(:any)']	= 'Puntos_controller/prnt_report_punto_cliente/$1';

@@ -101,7 +101,7 @@
     </div>
 </div>
  <!-- Modal ARTICULOS Structure -->
-  <div id="modalArtic" class="modal" style="width: 80%!important;">
+  <div id="modalArtic" class="modal" style="width: 85%!important;">
     <div class="modal-content">
     <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
       <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
