@@ -41,7 +41,8 @@
                                                 <td>'.$key['DIAS_VENCIMIENTO'].'</td>
                                                 <td>'.number_format($key['CANT_DISPONIBLE'],2).' - [ '.$key['UNIDAD_VENTA'].' ]' .'</td>
                                                 <td>'.date('d/m/Y',strtotime($key['fecha_vencimientoR'])).'</td>                                      
-                                                <td>'.$key['LOTE'].'</td>';
+                                                <td>'.$key['LOTE'].'</td>
+                                            </tr>';
                                         }
                                     }
                             ?>

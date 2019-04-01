@@ -57,12 +57,12 @@
               if ($Keys['modules_id']=="Stat-"){
                   echo '<li><a href="Stat">Estadisticas de ventas</a></li>';
               }else{
-                  echo '<li><a href="'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i>'.$Keys['Full_name'].'</a></li>';
+                  echo '<li><a href="'.base_url().'index.php/'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i>'.$Keys['Full_name'].'</a></li>';
               }
           }
       }else{
           echo '<li><a href="!#"><li href="!#"><i class="material-icons">error_outline</i> Error 403</li></a>';
-      }?>      
+      }?>
   </ul>
 
   <!-- Modal ChangePassword Structure -->

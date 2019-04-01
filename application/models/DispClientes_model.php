@@ -16,7 +16,7 @@ class DispClientes_model extends CI_Model
         $json = array();
         foreach ($query as $fila) {
             $json["data"][$i]["MOROSO"]              = $fila["MOROSO"];
-            $json["data"][$i]["CLIENTE"]             = $fila["CLIENTE"];
+            $json["data"][$i]["CLIENTE"]             = '<a href="clientes/'.$fila["CLIENTE"].'">'.$fila["CLIENTE"].'</a>';
             $json["data"][$i]["NOMBRE"]              = $fila["NOMBRE"];
             $json["data"][$i]["LIMITE_CREDITO"]      = "C$ ".number_format($fila["LIMITE_CREDITO"],2);
             $json["data"][$i]["SALDO"]               = "C$ ".number_format($fila["SALDO"],2);

@@ -3596,7 +3596,7 @@ input[type=range] + .thumb {
 }
 .modal .row .col.s12 {
 
-  text-align:center ;
+  /*text-align:center ;*/
 }
 .row .col.offset-s1 {
   margin-left: 8.3333333333%;

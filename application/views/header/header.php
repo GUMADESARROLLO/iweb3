@@ -35,7 +35,6 @@
     <!--<link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/chosen.css">-->
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/dataTables.tableTools.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/myToolTips.css">
-
     <style>
         #view-source {
             position: fixed;
