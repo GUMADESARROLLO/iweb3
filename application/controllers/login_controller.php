@@ -45,7 +45,7 @@ class Login_controller extends CI_Controller
 
                 if ($this->session->userdata) {
                     $Menu['List_menus'] = $this->Main_model->get_permission();
-                    redirect(($Menu['List_menus']!=0) ? "Main" : "Main_Clean");
+                    redirect("Home");
                 }
 
 

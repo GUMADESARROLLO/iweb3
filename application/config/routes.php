@@ -15,7 +15,7 @@ $route['salir'] = 'login_controller/Salir';
 //MAIN 
 $route['Main'] = 'Main_controller/index';
 $route['Main2'] = 'Main_controller/main2';
-$route['Main_Clean'] = 'Main_controller/main_clean';
+$route['Home'] = 'Main_controller/main_clean';
 $route['ajx_rutas/(:any)'] = 'Main_controller/get_ajx_item/$1';
 $route['Transacciones/(:any)'] = 'Main_controller/getTransacciones/$1';
 $route['TransaccionesDetalles/(:any)/(:any)/(:any)/(:any)'] = 'Main_controller/getTransaccionesDetalles/$1/$2/$3/$4';
@@ -26,6 +26,8 @@ $route['Precios/(:any)'] = 'Main_controller/getPrecios/$1';
 $route['Bonificados/(:any)'] = 'Main_controller/getBonificados/$1';
 $route['InvBodega'] = 'Invbodega_controller/index';
 $route['getInvBodegas/(:any)'] = 'Invbodega_controller/getInvBodegas/$1';
+
+$route['StatHome'] = 'Main_controller/Stat_Home';
 
 //RESEVA
 $route['Reserva'] = 'Reserva_controller/index';
@@ -66,3 +68,4 @@ $route['tabs/(:any)/(:any)'] = 'clientes_controller/changeTabs/$1/$2';
 $route['dtllFac/(:any)'] = 'clientes_controller/detalleFactura/$1';
 $route['dtllCanj/(:any)'] = 'clientes_controller/detalleCanje/$1';
 
+$route['prnt_report_punto_cliente/(:any)']	= 'Puntos_controller/prnt_report_punto_cliente/$1';

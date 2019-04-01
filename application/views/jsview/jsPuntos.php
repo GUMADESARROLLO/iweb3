@@ -60,48 +60,13 @@ $(document).ready(function(){
         $("#modalEncabezado").html(nombre);
         $("#modalIdArticulo").html(elem);
 
-       /* $('#tbl_trasn').DataTable( {
-            responsive: true,
-            "autoWidth":false,
-            "info": true,
-            "sort":true,
-            "destroy": true,
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [5,10,100, -1],
-                [5,10,100, "Todo"]
-            ],
-            "language": {
-                "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "Registro 0 a 0 de 0 entradas",
-                "zeroRecords": "No se encontro coincidencia",
-                "infoFiltered": "(filtrado de _MAX_ registros en total)",
-                "emptyTable": "NO HAY DATOS DISPONIBLES",
-                "lengthMenu": '_MENU_ ',
-                "search": '<i class=" material-icons">search</i>',
-                "loadingRecords": "",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última ",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
-        } );*/
-
-
         $('#tbl_trasn').DataTable( {
             "ajax": "ajax_getTransac/"  + elem,
             responsive:true,
             "autoWidth":false,
             "destroy": true,
-            //stateSave: true,
             "info": false,
             "sort":true,
-            "dom": 'T<"clear">lfrtip',
-            "tableTools": {
-                "sSwfPath": "<?php echo base_url("assets/data/swf/copy_csv_xls_pdf.swf"); ?>"
-            },
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10,100, -1],
@@ -135,10 +100,8 @@ $(document).ready(function(){
                 tTotal =0;
                 $("#tTotalPuntos").html("...");
                 this.api().columns([2]).every( function () {
-                    //$("#searchCatalogo").attr("placeholder", "Buscar entre "+this.data().count()+" articulos");
                     this.data().each( function ( d, j ) {
                         tTotal += parseInt(d.replace(",",""));
-
                     } );
                 } );
                 $("#tTotalPuntos").html(tTotal);
@@ -149,6 +112,15 @@ $(document).ready(function(){
 
 
     }
+
+
+    $("#id_prn_report").on("click",function () {
+        var id_print = $("#modalIdArticulo").html();
+        console.log(id_print);
+        var url = getRootUrl()+ '/iweb3/index.php/prnt_report_punto_cliente/'+id_print;
+        window.open(url);
+    });
+
 $("#btn_updte_existe").on("click",function () {
     swal({
             title: 'Actualizano existencias',
@@ -181,4 +153,14 @@ $("#btn_updte_existe").on("click",function () {
         }
     });
 });
+
+
+function getRootUrl() {
+    var defaultPorts = {"http:":80,"https:":443};
+    return window.location.protocol + "//" + window.location.hostname
+        + (((window.location.port)
+        && (window.location.port != defaultPorts[window.location.protocol]))
+            ? (":"+window.location.port) : "");
+}
+
 </script>

@@ -29,5 +29,19 @@ class DispClientes_model extends CI_Model
         echo json_encode($json);
         $this->sqlsrv->close();
     }
+    public function info_cliente($ID)
+    {
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM SAC_DISP_CREDITO_UMK WHERE CLIENTE='".$ID."'", SQLSRV_FETCH_ASSOC);
+        $i = 0;
+        $json = array();
+        foreach ($query as $fila) {
+            $json["data"][$i]["CLIENTE"]             = $fila["CLIENTE"];
+            $json["data"][$i]["NOMBRE"]              = $fila["NOMBRE"];
+            $json["data"][$i]["DIRECCION"]           = $fila["DIRECCION"];
+            $i++;
+        }
+        return $json;
+        $this->sqlsrv->close();
+    }
 
 }

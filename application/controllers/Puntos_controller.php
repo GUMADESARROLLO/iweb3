@@ -8,6 +8,7 @@ class Puntos_controller extends CI_Controller
         parent::__construct();
         $this->load->model('Main_model');
         $this->load->model('Puntos_model');
+        $this->load->model('DispClientes_model');
         $this->load->library("session");
         if ($this->session->userdata('logged') == 0) {
             redirect(base_url() . 'index.php', 'refresh');
@@ -37,4 +38,13 @@ class Puntos_controller extends CI_Controller
     {
         $this->Puntos_model->get_facturas_puntos($Cliente);
     }
+    public function prnt_report_punto_cliente($ID){
+        $data['CLIENTES'] = $this->DispClientes_model->info_cliente($ID);
+
+        $this->load->view('header/header');
+        $this->load->view('pages/Puntos_print',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/jsPuntos_print');
+    }
+
 }

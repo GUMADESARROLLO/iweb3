@@ -42,6 +42,7 @@
                                 <th>Precio</th>
                                 <th>Existencia 002</th>
                                 <th>Existencia 006</th>
+                                <th>Existencia 005</th>
                                 <th>Puntos</th>
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                 <th>Precio</th>
                                 <th>Existencia 002</th>
                                 <th>Existencia 006</th>
+                                <th>Existencia 005</th>
                                 <th>Puntos</th>
                             </tr>
                         </tfoot>
@@ -69,6 +71,7 @@
                                                 <td>".number_format($key["PRECIO_FARMACIA"],2)."</td>
                                                 <td>".number_format($key["total"],2)."</td>
                                                 <td>".number_format($key["006"],2)."</td>
+                                                <td>".number_format($key["005"],2)."</td>
                                                 <td>".$rvPuntos."</td>
                                                 
                                             </tr>
@@ -101,7 +104,7 @@
     </div>
 </div>
  <!-- Modal ARTICULOS Structure -->
-  <div id="modalArtic" class="modal" style="width: 80%!important;">
+  <div id="modalArtic" class="modal" style="width: 85%!important;">
     <div class="modal-content">
     <a class=" right modal-action modal-close"><i class="material-icons blue-text">close</i></a>
       <h4 class="center indigo-text darken-4" id="modalEncabezado"></h4>
