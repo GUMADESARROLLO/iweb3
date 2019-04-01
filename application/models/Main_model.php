@@ -127,6 +127,21 @@ class Main_model extends CI_Model
 
     }
 
+    public function Stat_Home()
+    {
+        $json = array();
+        $json["Info"][0]["mVentas"] = "C$ " . number_format(rand(1, 9999),2);
+        $json["Info"][0]["mCobro"]  = "C$ " . number_format(rand(1, 9999),2);;
+        $json["Info"][0]["mPuntos"] = "C$ " . number_format(rand(1, 9999),2);;
+
+        for ($c = 0; $c <= 10; $c++) {
+            $json["name"][$c]="F".$c;
+            $json["data"][$c] = rand(1, 9999);
+        }
+        echo json_encode($json);
+
+    }
+
     public function getLotes($Bodega,$Art)
     {
         $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_lotes WHERE BODEGA = '$Bodega' AND ARTICULO = '$Art'", SQLSRV_FETCH_ASSOC);
@@ -215,23 +230,21 @@ class Main_model extends CI_Model
 
 
                 $data = array(
-                    'name'          => $key['Modulo_name_id'],
-                    'id'            => $key['Modulo_name_id'],
-                    'value'         => $key['Modulo_name_id'],
+                    'id'         => $i ,
                     'checked'       => $this->has_permission
                     (
                         $key['Modulo_name_id'],
                         $Id
                     ),
-                    'style'         => 'margin:10px',
-                    'onClick'       => 'getPermiso('.$Permisos.')'
+                    'onClick'       => 'getPermiso('.$Permisos.')',
+                    'class'         => 'filled-in'
+
                 );
 
 
 
                 $temp["data"][$i]["Id"]     = $key['Modulo_id'];
                 $temp["data"][$i]["name"]   = $key['Modulo_full_name'];
-
                 $temp["data"][$i]["chck"]   = form_checkbox($data);
                 $i++;
             }

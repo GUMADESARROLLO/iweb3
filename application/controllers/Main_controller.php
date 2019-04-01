@@ -46,7 +46,7 @@ class Main_controller extends CI_Controller
         $this->load->view('pages/menu',$Menu);
         $this->load->view('pages/Main_clean');
         $this->load->view('footer/footer');
-        $this->load->view('jsview/jsArticulos');
+        $this->load->view('jsview/jsHome');
     }
     public function only002()
     {
@@ -122,6 +122,10 @@ class Main_controller extends CI_Controller
     public function getBonificados($ID)
     {
         $this->Main_model->getBonificados($ID);
+    }
+    public function Stat_Home()
+    {
+        $this->Main_model->Stat_Home();
     }
     public function lst_ajax_SavePermisos() {
         $this->Main_model->lst_ajax_SavePermisos(

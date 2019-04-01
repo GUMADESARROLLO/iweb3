@@ -38,7 +38,7 @@
   <ul id="slide-out" class="sidenav" style="background: #003040; color: white">
       <li>
         <div class="user-view">      
-          <img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png">
+          <a href="Home"><img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png"></a>
           <span><strong><?php echo $name?></strong></span>
 
           <div class="tooltip top" style="float: right!important; margin-top: 3px">
