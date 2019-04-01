@@ -1651,6 +1651,7 @@ select.swal2-select{
   direction: ltr;
   border-top-left-radius: 0rem;
   border-bottom-left-radius: 0rem;
+  text-align: left;
 }
 
 .input-group {
@@ -1713,6 +1714,51 @@ select.swal2-select{
     border-color: #2E2E2E transparent transparent transparent;
 }
 
+
+/*ESTILO VIEW CLIENTE*/
+.padding_top {
+    padding-top: 20px!important;
+}
+
+.back-page-cliente {
+    width: 100%!important;
+    background-color:#f3f3f6;
+    padding: 25px;
+    height: 25%;
+}
+
+.block-dir {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.border-left-1 {
+    border-left: 1px solid #e2e2e2;
+}
+
+.cont-info-client {
+    float: right!important; 
+    box-shadow: none!important; 
+    width: 85%!important;
+}
+
+.font-punts {
+    font-weight: bold; 
+    color:green; font-size: 2rem;
+}
+
+.font-other {
+    font-weight: bold; 
+    color:black; 
+    font-size: 1rem;
+}
+
+.td-1 {
+    text-align: left!important; 
+    background: #eeeeee!important;
+    border: 1px solid #eeeeee;
+}
 .cls_body{
     background-color: #EDF0F5;
+
 }
