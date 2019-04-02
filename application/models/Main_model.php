@@ -129,15 +129,26 @@ class Main_model extends CI_Model
 
     public function Stat_Home()
     {
+        $i=0;
         $json = array();
-        $json["Info"][0]["mVentas"] = "C$ " . number_format(rand(1, 9999),2);
-        $json["Info"][0]["mCobro"]  = "C$ " . number_format(rand(1, 9999),2);;
-        $json["Info"][0]["mPuntos"] = "C$ " . number_format(rand(1, 9999),2);;
 
-        for ($c = 0; $c <= 10; $c++) {
+        $Car_Info = $this->sqlsrv->fetchArray("SELECT * FROM vm_stat_VCP ", SQLSRV_FETCH_ASSOC);  
+
+        $json["Info"][0]["mVentas"] = "C$ " . number_format($Car_Info[1]['Puntos'],2);
+        $json["Info"][0]["mCobro"]  = "C$ N/D";
+        $json["Info"][0]["mPuntos"] = "Pts " . number_format($Car_Info[0]['Puntos'],2);
+       
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM vm_stat_vntRutas ", SQLSRV_FETCH_ASSOC); 
+        foreach ($query as $fila){
+            $json["name"][$i] =   $fila["RUTA"];
+            $json["data"][$i] =   (float) number_format($fila["Venta"], 2, '.', '');
+            $i++;
+        }
+
+        /*for ($c = 0; $c <= 10; $c++) {
             $json["name"][$c]="F".$c;
             $json["data"][$c] = rand(1, 9999);
-        }
+        }*/
         echo json_encode($json);
 
     }
