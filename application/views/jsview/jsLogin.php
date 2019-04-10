@@ -1,21 +1,21 @@
 <script>
 var vrUsuario,vrPassword;
-if(localStorage.getItem("onLine")==="true"){
+/*if(localStorage.getItem("onLine")==="true"){
         vrUsuario =  localStorage.getItem("oUsuario");
         vrPassword =localStorage.getItem("oPassword");
         //LLAMAR LA FUNCION DE ACCESO
         Login(vrUsuario , vrPassword);
-    }
+    }*/
 
 
-$("#Acceder").on("click",function(){
+/*$("#Acceder").on("click",function(){
      vrUsuario = $("#nombre").val(),
     vrPassword = $("#pass").val();
     Login(vrUsuario,vrPassword);
-});
+});*/
 
 
-function Login(vrUsuario,vrPassword)
+/*function Login(vrUsuario,vrPassword)
 {
         var form_data = {
         txtUsuario:vrUsuario,
@@ -42,7 +42,14 @@ function Login(vrUsuario,vrPassword)
             }
         }
     });
-}
+}*/
+
+$(document).ready(function(){
+    $('.slider').slider();
+    $("body").css('background', '#f3f3f6', 'height', '100%')
+    $( "#nombre" ).focus();
+
+});
 
 
 </script>

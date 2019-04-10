@@ -16,6 +16,7 @@ class Login_controller extends CI_Controller
         $this->load->view('header/header_login');
         $this->load->view('login/login');
         $this->load->view('footer/footer_login');
+        $this->load->view('jsview/jsLogin');
     }
 
     public function Acreditar()
