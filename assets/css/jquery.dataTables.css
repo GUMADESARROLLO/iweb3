@@ -311,8 +311,8 @@ table.dataTable td {
   *cursor: hand;
   color: #00BCD4 !important;
   border: 1px solid transparent;
-  border-radius: 2px;
-  font-family: 'robotoblack' ;
+  border-radius: 50px;
+  font-family: 'robotoblack';
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #00BCD4 !important;

@@ -38,7 +38,7 @@
   <ul id="slide-out" class="sidenav" style="background: #003040; color: white">
       <li>
         <div class="user-view">      
-          <img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png">
+          <a href="Home"><img style="width: 100%" src="<?php echo base_url();?>assets/img/logoUMK.png"></a>
           <span><strong><?php echo $name?></strong></span>
 
           <div class="tooltip top" style="float: right!important; margin-top: 3px">
@@ -57,12 +57,12 @@
               if ($Keys['modules_id']=="Stat-"){
                   echo '<li><a href="Stat">Estadisticas de ventas</a></li>';
               }else{
-                  echo '<li><a href="'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i>'.$Keys['Full_name'].'</a></li>';
+                  echo '<li><a href="'.base_url().'index.php/'.$Keys['modules_id'].'"><i class="material-icons">'.$Keys['Icons'].'</i>'.$Keys['Full_name'].'</a></li>';
               }
           }
       }else{
           echo '<li><a href="!#"><li href="!#"><i class="material-icons">error_outline</i> Error 403</li></a>';
-      }?>      
+      }?>
   </ul>
 
   <!-- Modal ChangePassword Structure -->

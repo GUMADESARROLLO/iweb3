@@ -63,29 +63,7 @@
   </div>
 </div>
 
-<!--<main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-grid demo-content">       
-        <div class="row TextColor center">LISTA DE USUARIOS</div>
-        
-        <div class="row" style="width:100%">
-          <div class="container">
-            <div class="Buscar row column">               
-              <div class="col s1 m1 l1 offset-l3 offset-m2"><i onclick="ekisde()" class="material-icons ColorS">search</i></div>
-                <div class="input-field col s11 m6 l5">
-                    
-                    <label for="search"></label>
-                </div>
-            </div>
-          </div>
 
-          
-
-        <div class="row center">
-
-        </div>
-  </div>
-</div>
-</main>-->
 
  <!-- Modal Structure -->
   <div id="modalUsuarios" class="modal">
@@ -128,6 +106,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Privilegio del usuario</h5>
                 <span id="id_select_user" style="display: none">0</span>
             </div>
+
 
             <div class="modal-body">
                 <div class="row">

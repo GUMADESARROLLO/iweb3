@@ -34,6 +34,7 @@
 <script src="<?PHP echo base_url();?>assets/js/highcharts.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/exporting.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/export-data.js"></script>
+<script src="<?PHP echo base_url();?>assets/js/Numeral.js"></script>
 <!--<script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>-->
 
 <script>
@@ -118,7 +119,8 @@ function actualizaPass()
 
 
 $("#Salir").on("click",function(){
-    window.location.href = "salir";
+    var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';
+    window.location.href = base_url+"index.php/salir";
 });
 </script>
 </body>
