@@ -129,15 +129,69 @@ class Main_model extends CI_Model
 
     public function Stat_Home()
     {
+        $i=0;
         $json = array();
-        $json["Info"][0]["mVentas"] = "C$ " . number_format(rand(1, 9999),2);
-        $json["Info"][0]["mCobro"]  = "C$ " . number_format(rand(1, 9999),2);;
-        $json["Info"][0]["mPuntos"] = "C$ " . number_format(rand(1, 9999),2);;
 
-        for ($c = 0; $c <= 10; $c++) {
+        $Car_Info = $this->sqlsrv->fetchArray("SELECT * FROM vm_stat_VCP ", SQLSRV_FETCH_ASSOC);  
+
+        $json["Info"][0]["mVentas"] = "C$ " . number_format($Car_Info[1]['Puntos'],2);
+        $json["Info"][0]["mCobro"]  = "C$ N/D";
+        $json["Info"][0]["mPuntos"] = "Pts " . number_format($Car_Info[0]['Puntos'],2);
+       
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM vm_stat_vntRutas ", SQLSRV_FETCH_ASSOC); 
+        foreach ($query as $fila){
+            $json["name"][$i] =   $fila["RUTA"];
+            $json["data"][$i] =   (float) number_format($fila["Venta"], 2, '.', '');
+            $i++;
+        }
+
+        /*for ($c = 0; $c <= 10; $c++) {
             $json["name"][$c]="F".$c;
             $json["data"][$c] = rand(1, 9999);
+        }*/
+        echo json_encode($json);
+
+    }
+    public function Stat_Vendedor($ID)
+    {
+        $c=0;
+        $af=0;
+        $anf=0;
+        $json = array();
+        $SQl="";
+
+        $Init = (int) date('m');
+        $End = $Init - 3;
+        $SQl .="SELECT TOP 2 T0.CLS,T0.RUTA,";
+        for ($i = $End;$i <= $Init;$i++)$SQl .= "T0.[".$i."],";
+        $SQl =substr($SQl,0,-1);
+        $SQl .=" FROM Stad_3M_Vendedores T0 WHERE T0.RUTA='".$ID."' ";
+
+        $Info = $this->sqlsrv->fetchArray($SQl, SQLSRV_FETCH_ASSOC);
+        foreach ($Info as $fila) {
+            $json["Arbol"]["Clientes"]["data"][$c]["cls"] = $fila["CLS"];
+            $json["Arbol"]["Clientes"]["data"][$c]["ruta"] = $fila["RUTA"];
+            for ($n = $End;$n <= $Init;$n++){
+                $json["Arbol"]["Clientes"]["data"][$c]["M".$n] = is_null ($fila["$n"])? "0.00" : number_format($fila["$n"],2,'.', '' );
+            }
+            $c++;
         }
+
+        $Articulo_Facturado = $this->sqlsrv->fetchArray("Select TOP 5 * from Stad_Articulos_Facturados T0 WHERE T0.RUTA='".$ID."'", SQLSRV_FETCH_ASSOC);
+        foreach ($Articulo_Facturado as $fila) {
+            $json["Arbol"]["ArtFacturados"]["data"][$af]["ARTICULO"] = $fila["ARTICULO"];
+            $json["Arbol"]["ArtFacturados"]["data"][$af]["DESCRIPCION"] = $fila["DESCRIPCION"];
+            $json["Arbol"]["ArtFacturados"]["data"][$af]["Venta"] = number_format($fila["Venta"],2,'.','');
+            $af++;
+        }
+
+                $Articulo_no_Facturado = $this->sqlsrv->fetchArray("SELECT TOP 5 * FROM iweb_articulos T0 WHERE  T0.total <> 0 AND T0.ARTICULO NOT IN (SELECT T1.ARTICULO FROM Stad_Articulos_Facturados T1 WHERE T1.RUTA='".$ID."')", SQLSRV_FETCH_ASSOC);
+                foreach ($Articulo_no_Facturado as $fila) {
+                    $json["Arbol"]["ArtNoFacturados"]["data"][$anf]["ARTICULO"] = $fila["ARTICULO"];
+                    $json["Arbol"]["ArtNoFacturados"]["data"][$anf]["DESCRIPCION"] = $fila["DESCRIPCION"];
+                    $anf++;
+                }
+
         echo json_encode($json);
 
     }

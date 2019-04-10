@@ -127,6 +127,10 @@ class Main_controller extends CI_Controller
     {
         $this->Main_model->Stat_Home();
     }
+    public function Stat_Vendedor($ID)
+    {
+        $this->Main_model->Stat_Vendedor($ID);
+    }
     public function lst_ajax_SavePermisos() {
         $this->Main_model->lst_ajax_SavePermisos(
             $this->input->post('gpUsu'),
