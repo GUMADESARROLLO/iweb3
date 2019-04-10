@@ -1760,5 +1760,15 @@ select.swal2-select{
 }
 .cls_body{
     background-color: #EDF0F5;
+<<<<<<< HEAD
+}
 
+/*PANTALLA TABLETS*/
+@media only screen and (min-width: 1280px) {
+  #nav-tablet {
+    display: none
+  }
+=======
+
+>>>>>>> 6d61b008cf8184c6a7b6b4d87633b97d6fcd699a
 }
