@@ -1716,3 +1716,10 @@ select.swal2-select{
 .cls_body{
     background-color: #EDF0F5;
 }
+
+/*PANTALLA TABLETS*/
+@media only screen and (min-width: 1280px) {
+  #nav-tablet {
+    display: none
+  }
+}

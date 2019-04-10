@@ -73,3 +73,9 @@
 
 </head>
 <body class="cls_body">
+    <nav id="nav-tablet" style="background: #003040">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo" style="font-size: 1.5rem">UNIMARK S. A.</a>
+          <a href="#!" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
