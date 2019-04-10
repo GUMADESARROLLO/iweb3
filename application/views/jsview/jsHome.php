@@ -1,5 +1,26 @@
 <script>
+    var flattened = [];
+    function flatten(json, acc, inArray) {
+        var key;
 
+        acc = acc || [];
+        for(key in json) {
+            if(inArray) {
+                key = +key;  //coerce to number
+            }
+            if(json[key] instanceof Array) {
+                flattened.push(acc.concat([key, 'arr']));
+                flatten(json[key], acc.concat([key, 'arr']), true);
+            }
+            else if(json[key] instanceof Object) {
+                flattened.push(acc.concat([key, 'obj']));
+                flatten(json[key], acc.concat([key, 'obj']));
+            }
+            else {
+                flattened.push(acc.concat(key, json[key]));
+            }
+        }
+    }
     var Char = {
         chart: {
             type: 'column',
@@ -20,7 +41,60 @@
             title: {
                 text: ''
             }
-        },
+        }, 
+        plotOptions: {
+            series: {
+                 cursor: 'pointer',
+                 point: {
+                     events: {
+                        click: function() {
+                            //alert ('Category: '+ this.category +', value: '+ this.y);
+                            $("#modal_detalle_ruta").openModal({
+                                startingTop: '4%',
+                                endingTop: '10%'
+                            });
+                           /* var dataSet = [
+                                [ "Tiger Nixon", "System Architect" ],
+                                [ "Garrett Winters", "Accountant" ]
+                            ];
+                            $('#Tbl_3mVendedor').DataTable( {
+                                data: dataSet,
+                                columns: [
+                                    { title: "cls" },
+                                    { title: "cls" }
+                                ]
+                            } );*/
+                            $.getJSON("StatVendedor/"+this.category, function(d) {
+
+                                    console.log(d.Arbol);
+                                   /* $('#tblClienteRpt').DataTable({
+                                        "destroy": true,
+                                        "data": JSON.parse(d.Arbol.Clientes),
+                                        "info":    false,
+                                        "bPaginate": true,
+                                        "paging": true,
+                                        "ordering": false,
+                                        "pagingType": "full_numbers",
+                                        "emptyTable": "No hay datos disponibles en la tabla",
+                                        "language": {
+                                            "zeroRecords": "No hay datos disponibles"
+                                        },
+                                        columns: [
+                                            { "data": "cls" },
+                                            { "data": "cls" }
+                                        ]
+                                    });*/
+
+
+
+
+
+                            });
+                        }
+                    }
+                }
+            }
+        },       
         series: [{
             colorByPoint: true,
             data: [],
@@ -71,5 +145,5 @@
         update_clock(); // run function once at first to avoid delay
         var timeinterval = setInterval(update_clock,1000);
     }
-    run_clock('clockdiv',deadline);
+    //run_clock('clockdiv',deadline);
 </script>

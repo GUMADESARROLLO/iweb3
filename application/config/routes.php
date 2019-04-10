@@ -28,6 +28,7 @@ $route['InvBodega'] = 'Invbodega_controller/index';
 $route['getInvBodegas/(:any)'] = 'Invbodega_controller/getInvBodegas/$1';
 
 $route['StatHome'] = 'Main_controller/Stat_Home';
+$route['StatVendedor/(:any)'] = 'Main_controller/Stat_Vendedor/$1';
 
 //RESEVA
 $route['Reserva'] = 'Reserva_controller/index';

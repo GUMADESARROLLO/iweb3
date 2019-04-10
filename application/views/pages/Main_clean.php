@@ -6,10 +6,7 @@
 </header>
 
 <br>
-
-
     <div class="container" style="width: 100%!important;">
-
         <div class="row right" ><div id="clockdiv"></div></div>
         <div class="row" >
             <div class="col s12" >
@@ -50,8 +47,83 @@
                 </div>
             </div>            
         </div>
+    </div>
+    <div id="modal_detalle_ruta" class="modal" style="width: 85%!important;">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card ">
+                        <div class="card-content">
+                            <table class="table striped RobotoR" id="Tbl_3mVendedor" >
+                                <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                </tr>
+                                </thead>
 
+                                <tbody>
+                                <tr>
+                                    <td>....</td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col s12" >
+                    <div class="row " >
+                        <div class="col s6 ">
+                            <div class="card ">
+                                <div class="card-content">
+                                    <span class="card-title grey-text text-darken-4 right" id="">C$ 1,563,988.54</span>
+                                    <table class="table striped RobotoR" >
+                                        <thead>
+                                            <tr>
+                                                <th>Codigo</th>
+                                                <th>Nombre</th>
+                                                <th>Monto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="card ">
+                                <div class="card-content">
+                                    <span class="card-title grey-text text-darken-4 right" id="">Articulo No Facturados</span>
+                                    <table class="table striped RobotoR" >
+                                        <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Nombre</th>
 
+                                        </tr>
+                                        </thead>
 
-
+                                        <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
