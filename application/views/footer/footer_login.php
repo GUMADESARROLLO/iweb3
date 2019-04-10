@@ -1,4 +1,4 @@
-<footer class="footer row">
+<!--<footer class="footer row">
         <div id="conTIcon" class="row center">
             <div class="row center">
                 <div class="col s12 RobotoR" style="color: white">
@@ -7,6 +7,9 @@
             </div>
 
         </div>
+</footer>-->
+<footer id="_footer">
+	<p><?php echo "IWEB - UNIMARK S.A. Copyright ©".date("Y").""?></p>
 </footer>
 
 <!--Import jQuery before materialize.js-->
