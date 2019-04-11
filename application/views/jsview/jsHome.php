@@ -49,46 +49,118 @@
                      events: {
                         click: function() {
                             //alert ('Category: '+ this.category +', value: '+ this.y);
-                            $("#modal_detalle_ruta").openModal({
-                                startingTop: '4%',
-                                endingTop: '10%'
-                            });
-                           /* var dataSet = [
-                                [ "Tiger Nixon", "System Architect" ],
-                                [ "Garrett Winters", "Accountant" ]
-                            ];
-                            $('#Tbl_3mVendedor').DataTable( {
-                                data: dataSet,
-                                columns: [
-                                    { title: "cls" },
-                                    { title: "cls" }
-                                ]
-                            } );*/
-                            $.getJSON("StatVendedor/"+this.category, function(d) {
+                            $("#titulo_ruta").html(this.category);
+                            $("#modal_detalle_ruta").openModal();
+                            $.ajax({
+                                url: "StatVendedor/"+this.category ,
+                                type: 'get',
+                                async: true,
+                                success: function(data) {
+                                    if (data.length!=0) {
+                                        $.each(JSON.parse(data), function(i, item) {
 
-                                    console.log(d.Arbol);
-                                   /* $('#tblClienteRpt').DataTable({
-                                        "destroy": true,
-                                        "data": JSON.parse(d.Arbol.Clientes),
-                                        "info":    false,
-                                        "bPaginate": true,
-                                        "paging": true,
-                                        "ordering": false,
-                                        "pagingType": "full_numbers",
-                                        "emptyTable": "No hay datos disponibles en la tabla",
-                                        "language": {
-                                            "zeroRecords": "No hay datos disponibles"
-                                        },
-                                        columns: [
-                                            { "data": "cls" },
-                                            { "data": "cls" }
-                                        ]
-                                    });*/
+                                            var p1= item['ruta'][1];
+                                            var p4= item['ruta'][0];
+
+                                            var Meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+                                            $("#M4").html(Meses[(p4 - 4)]);
+                                            $("#M3").html(Meses[(p4 - 3)]);
+                                            $("#M2").html(Meses[(p4 - 2)]);
+                                            $("#M1").html(Meses[(p4 - 1)]);
 
 
+                                            $('#Tbl_3mVendedor').DataTable({
+                                                responsive:true,
+                                                "autoWidth":false,
+                                                "destroy": true,
+                                                "data": item['array_1'],
+                                                "info":    false,
+                                                "bPaginate": true,
+                                                "paging": true,
+                                                "ordering": false,
+                                                "pagingType": "full_numbers",
+                                                "emptyTable": "No hay datos disponibles en la tabla",
+                                                "language": {
+                                                    "zeroRecords": "No hay datos disponibles"
+                                                },
+                                                columns: [
+                                                    { "data": "CLS" },
+                                                    { "data": "NOMBRE" },
+                                                    { "data": p1, render: $.fn.dataTable.render.number( ',', '.', 2 )},
+                                                    { "data": (p4 - 2 ), render: $.fn.dataTable.render.number( ',', '.', 2 ) },
+                                                    { "data": (p4 - 1 ), render: $.fn.dataTable.render.number( ',', '.', 2 ) },
+                                                    { "data": p4, render: $.fn.dataTable.render.number( ',', '.', 2 ) }
+                                                ],
+                                                initComplete: function () {
+
+                                                    $("#Tbl_3mVendedor_length").hide();
+                                                }
+                                            });
+
+                                            $('#Tbl_Articulos_Facturados').DataTable({
+                                                responsive:true,
+                                                "autoWidth":false,
+                                                "destroy": true,
+                                                "data": item['array_2'],
+                                                "info":    false,
+                                                "bPaginate": true,
+                                                "paging": true,
+                                                "ordering": false,
+                                                "pagingType": "full_numbers",
+                                                "emptyTable": "No hay datos disponibles en la tabla",
+                                                "language": {
+                                                    "zeroRecords": "No hay datos disponibles"
+                                                },
+                                                columns: [
+                                                    { "data": "ARTICULO" },
+                                                    { "data": "DESCRIPCION" },
+                                                    { "data": "Venta", render: $.fn.dataTable.render.number( ',', '.', 2 )},
+                                                ],
+                                                initComplete: function () {
+                                                    var tt  = 0;
+                                                    this.api().columns([2]).every( function () {
+                                                        this.data().each( function ( d, j ) {
+                                                            tt += parseFloat(numeral(d).format('00.00'));
+                                                        } );
+
+                                                        $("#span_tt_Facturado").html("C$ " + numeral(tt).format("0,0.00"));
+                                                    } );
+                                                    $("#Tbl_Articulos_Facturados_length").hide();
 
 
+                                                }
+                                            });
+                                             $('#Tbl_Articulos_no_Facturados').DataTable({
+                                                responsive:true,
+                                                "autoWidth":false,
+                                                "destroy": true,
+                                                "data": item['array_3'],
+                                                "info":    false,
+                                                "bPaginate": true,
+                                                "paging": true,
+                                                "ordering": false,
+                                                "pagingType": "full_numbers",
+                                                "emptyTable": "No hay datos disponibles en la tabla",
+                                                "language": {
+                                                    "zeroRecords": "No hay datos disponibles"
+                                                },
+                                                columns: [
+                                                    { "data": "ARTICULO" },
+                                                    { "data": "DESCRIPCION" }
+                                                ],
+                                                initComplete: function () {
+                                                    $("#Tbl_Articulos_no_Facturados_length").hide();
+                                                }
+                                            });
 
+
+                                        });
+                                        }else if (data.length===0) {
+                                        alert("Error");
+                                    }
+
+                                }
                             });
                         }
                     }
