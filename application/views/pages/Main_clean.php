@@ -19,7 +19,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col s6">
                         <div class="card ">
                             <div class="card-content">

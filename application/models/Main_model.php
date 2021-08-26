@@ -202,7 +202,7 @@ class Main_model extends CI_Model
         
 
         if($this->session->userdata('RolUser')=='2'){
-            $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_precio WHERE ARTICULO = '$ID' and NIVEL_PRECIO IN ('FARMACIA','PUBLICO')", SQLSRV_FETCH_ASSOC);
+            $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_precio WHERE ARTICULO = '$ID' and NIVEL_PRECIO IN ('FARMACIA','PUBLICO','MAYORISTA')", SQLSRV_FETCH_ASSOC);
         }else{
             $query = $this->sqlsrv->fetchArray("EXEC sp_iweb_precios '$ID'", SQLSRV_FETCH_ASSOC);
         }
