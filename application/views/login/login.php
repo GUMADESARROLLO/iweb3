@@ -1,10 +1,10 @@
 
 <div style="width: 100%; background: #263b47" id="cont-login-1">
     <div class="row" style="margin-bottom: 0px!important; ">
-        <div class="col s7">
+        <div class="col s5">
             <img src="<?php echo base_url();?>assets/img/logoUMK.png" style="width:20%; margin-top: 8px;">
         </div>        
-        <div class="col s5">
+        <div class="col s7">
             <div class="row" style="margin-bottom: 0px!important">
                 <form action="<?php echo base_url("index.php/login");?>" method="post" class="form">
                     <div class="col s4">
@@ -13,6 +13,7 @@
                     <div class="col s4">
                         <input placeholder="Contraseña" name="txtpassword" autocomplete="off" id="pass" type="password" class="login-input">
                     </div>
+                   
                     <div class="col s4">
                         <button id="Acceder" class="btn-login" type="submit" name="action">Acceder</button>
                     </div>
