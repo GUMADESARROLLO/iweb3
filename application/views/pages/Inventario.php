@@ -43,7 +43,6 @@
                                 <th>Existencia 002</th>
                                 <th>Existencia 006</th>
                                 <th>Existencia 005</th>
-                                <th>Puntos</th>
                             </tr>
                         </thead>
                         <tfoot id="blfooterMaster">
@@ -54,7 +53,6 @@
                                 <th>Existencia 002</th>
                                 <th>Existencia 006</th>
                                 <th>Existencia 005</th>
-                                <th>Puntos</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -62,18 +60,15 @@
                                 if(!$Articulos){
                                 }
                                 else{
-                                    foreach($Articulos as $key){
-                                        $rvPuntos = ($key["PUNTOS"]=="") ? "N/D" : $key["PUNTOS"] ;
+                                    foreach($Articulos as $key){                                        
                                         echo "
                                             <tr>
                                                 <td><a href='#!' onclick='getTransac(".'"'.$key['ARTICULO'].'","'.str_replace("'","",$key['DESCRIPCION']).'"'.")'>".$key["ARTICULO"]."</a></td>
                                                 <td class='left'>".$key["DESCRIPCION"]."</td>
-                                                <td>".number_format($key["PRECIO_FARMACIA"],2)."</td>
-                                                <td>".number_format($key["total"],2)."</td>
-                                                <td>".number_format($key["006"],2)."</td>
-                                                <td>".number_format($key["005"],2)."</td>
-                                                <td>".$rvPuntos."</td>
-                                                
+                                                <td>".($key["PRECIO_FARMACIA"])."</td>
+                                                <td>".($key["total"])."</td>
+                                                <td>".($key["006"])."</td>
+                                                <td>".($key["005"])."</td>
                                             </tr>
                                         ";
                                     }
