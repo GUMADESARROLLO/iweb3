@@ -45,7 +45,6 @@
                                 </th>
                                 <th>Laboratorio</th>
                                 <th>unidad</th>
-                                <th>Puntos</th>
                             </tr>
                         </thead>
                         <tfoot id="blfooterMaster">
@@ -55,7 +54,6 @@
                                 <th>Existencia</th>
                                 <th>Laboratorio</th>
                                 <th>unidad</th>
-                                <th>Puntos</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -65,17 +63,15 @@
                                 else{
                                     foreach($Articulos as $key){
 
-                                        $rvPuntos = ($key["PUNTOS"]=="") ? "N/D" : $key["PUNTOS"] ;
                                         $rvLab = ($key["LABORATORIO"]=="") ? "N/D" : $key["LABORATORIO"] ;
 
                                         echo "
                                             <tr>
                                                 <td><a href='#!' onclick='getTransac(".'"'.$key['ARTICULO'].'","'.str_replace("'","",$key['DESCRIPCION']).'"'.")'>".$key["ARTICULO"]."</a></td>
                                                 <td class='left'>".$key["DESCRIPCION"]."</td>
-                                                <td>".number_format($key["total"],2)."</td>
+                                                <td>".($key["total"])."</td>
                                                 <td>".$rvLab."</td>                                        
                                                 <td>".$key["UNIDAD_ALMACEN"]."</td>
-                                                <td>".$rvPuntos."</td>
                                                 
                                             </tr>
                                         ";

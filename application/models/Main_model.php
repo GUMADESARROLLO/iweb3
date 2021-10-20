@@ -11,11 +11,47 @@ class Main_model extends CI_Model
 
     public function listarArticulos()
     {
-        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_articulos",SQLSRV_FETCH_ASSOC);
-        if($query){
-            return $query;
+        $query = $this->sqlsrv->fetchArray("SELECT * FROM iweb_articulos T0 WHERE T0.ARTICULO NOT LIKE 'VU%' ",SQLSRV_FETCH_ASSOC);
+
+        $qSKU = "SELECT T1.ARTICULO, T1.DESCRIPCION, T0.CANT_DISPONIBLE,T1.UNIDAD_ALMACEN,T1.LABORATORIO,T1.UNIDAD_ALMACEN FROM iweb_bodegas T0 INNER JOIN iweb_articulos T1 ON T0.ARTICULO = T1.ARTICULO WHERE T0.ARTICULO LIKE 'VU%'";
+        $qResult = $this->sqlsrv->fetchArray( $qSKU , SQLSRV_FETCH_ASSOC);
+
+
+        $i=0;
+        $json = array();
+        foreach($query as $fila){
+            $json[$i]["ARTICULO"] = $fila["ARTICULO"]; ;
+            $json[$i]["DESCRIPCION"] = $fila["DESCRIPCION"];
+            $json[$i]["LABORATORIO"] = $fila["LABORATORIO"];
+            $json[$i]["UNIDAD_ALMACEN"] = $fila["UNIDAD_ALMACEN"];
+            $json[$i]["PRECIO_FARMACIA"] = number_format($fila["PRECIO_FARMACIA"],2);
+            $json[$i]["total"] = number_format($fila["total"],2);
+            $json[$i]["006"] = number_format($fila["006"],2);           
+            $json[$i]["005"] = number_format($fila["005"],2);           
+            $i++;
         }
+
+
+        foreach($qResult as $Row){
+            $json[$i]["ARTICULO"] = $Row["ARTICULO"]; 
+            $json[$i]["DESCRIPCION"] = $Row["DESCRIPCION"];
+            $json[$i]["LABORATORIO"] = $fila["LABORATORIO"];
+            $json[$i]["UNIDAD_ALMACEN"] = $fila["UNIDAD_ALMACEN"];
+            
+            $json[$i]["PRECIO_FARMACIA"] = number_format(0,2);
+            $json[$i]["total"] = number_format($Row["CANT_DISPONIBLE"],2);
+            $json[$i]["006"] = number_format(0,2);           
+            $json[$i]["005"] = number_format(0,2);           
+            $i++;
+        }
+
+
+        
         $this->sqlsrv->close();
+        return $json;
+        
+
+
     }
     public function get_ajx_item($condicion)
     {
