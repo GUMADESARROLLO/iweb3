@@ -35,7 +35,7 @@ class Main_model extends CI_Model
         foreach($qResult as $Row){
             $json[$i]["ARTICULO"] = $Row["ARTICULO"]; 
             $json[$i]["DESCRIPCION"] = $Row["DESCRIPCION"];
-            $json[$i]["LABORATORIO"] = $fila["LABORATORIO"];
+            $json[$i]["LABORATORIO"] = "";
             $json[$i]["UNIDAD_ALMACEN"] = $fila["UNIDAD_ALMACEN"];
             
             $json[$i]["PRECIO_FARMACIA"] = number_format(0,2);
