@@ -14,6 +14,7 @@ class DispClientes_model extends CI_Model
         $query = $this->sqlsrv->fetchArray("SELECT * FROM SAC_DISP_CREDITO_UMK", SQLSRV_FETCH_ASSOC);
         $i = 0;
         $json = array();
+        ini_set('memory_limit', '-1');
         foreach ($query as $fila) {
             $json["data"][$i]["MOROSO"]              = $fila["MOROSO"];
             $json["data"][$i]["CLIENTE"]             = '<a href="clientes/'.$fila["CLIENTE"].'">'.$fila["CLIENTE"].'</a>';
